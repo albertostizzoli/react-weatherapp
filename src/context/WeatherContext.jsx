@@ -20,7 +20,7 @@ export const WeatherProvider = ({ children }) => {
     const API_KEY = "2475b2b441e937cbe8a680647a89e112"; // Chiave API che mi servirà per i dati
 
 
-     // Funzione per recuperare i dati meteo attuali della città inserita
+    // Funzione per recuperare i dati meteo attuali della città inserita
     const fetchWeatherData = async () => {
         setLoading(true); // Imposta lo stato di caricamento su true
         try {
@@ -32,7 +32,7 @@ export const WeatherProvider = ({ children }) => {
 
             setError(null); // Resetta l'errore se il recupero è andato a buon fine
 
-             // Recupera le previsioni meteo in base alle coordinate fornite dalla risposta
+            // Recupera le previsioni meteo in base alle coordinate fornite dalla risposta
             fetchForecastData(response.data.coord.lat, response.data.coord.lon);
         } catch (error) {
             setError("Città non trovata. Prova di nuovo.");
@@ -41,8 +41,8 @@ export const WeatherProvider = ({ children }) => {
         }
         setLoading(false);
     };
-    
-     // Funzione per recuperare le previsioni meteo a più giorni in base a latitudine e longitudine
+
+    // Funzione per recuperare le previsioni meteo a più giorni in base a latitudine e longitudine
     const fetchForecastData = async (lat, lon) => {
         try {
             const response = await axios.get(
@@ -53,23 +53,43 @@ export const WeatherProvider = ({ children }) => {
             console.error("Errore durante il recupero delle previsioni", error);
         }
     };
-    
 
-     // Funzione per recuperare i dati meteo attuali in base a latitudine e longitudine, senza città
+
+    // Funzione per recuperare i dati meteo attuali in base a latitudine e longitudine, senza città
     const fetchWeatherDataByLocation = async (lat, lon) => {
         setLoading(true);
         try {
             const response = await axios.get(
-                 `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+                `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
             );
             setWeatherData(response.data);
             fetchForecastData(lat, lon); // Recupera le previsioni per le coordinate date
-        } catch (error){
+        } catch (error) {
             console.error("Errore nel recupero del meteo", error);
         }
         setLoading(false);
     };
 
-    
+    // Ritorna il provider, rendendo disponibili i dati e le funzioni ai componenti figli
+
+    return (
+        <WeatherContext.Provider
+            value={{
+                city,
+                setCity,
+                weatherData,
+                forecastData,
+                loading,
+                error,
+                fetchWeatherData,
+                fetchWeatherDataByLocation,
+            }}
+        >
+            {children}
+        </WeatherContext.Provider>
+    );
 
 };
+
+// Hook personalizzato per accedere facilmente al contesto del meteo
+export const useWeather = () => useContext(WeatherContext);
