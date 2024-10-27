@@ -30,6 +30,17 @@ export const WeatherProvider = ({ children }) => {
         setLoading(false);
     };
 
+    const fetchForecastData = async (lat, lon) => {
+        try {
+            const response = await axios.get(
+                `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+            );
+            setForecastData(response.data.list);
+        } catch (error) {
+            console.error("Errore durante il recupero delle previsioni", error);
+        }
+    };
+
     
 
 };
