@@ -26,7 +26,7 @@ export const WeatherProvider = ({ children }) => {
         try {
             // con Axios richiedo i dati meteo attuali
             const response = await axios.get(
-                `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+                `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=it`
             );
             setWeatherData(response.data); // Memorizza i dati meteo attuali nello stato
 
@@ -46,7 +46,7 @@ export const WeatherProvider = ({ children }) => {
     const fetchForecastData = async (lat, lon) => {
         try {
             const response = await axios.get(
-                `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+                `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=it`
             );
             setForecastData(response.data.list);
         } catch (error) {
@@ -60,7 +60,7 @@ export const WeatherProvider = ({ children }) => {
         setLoading(true);
         try {
             const response = await axios.get(
-                `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+                `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=it`
             );
             setWeatherData(response.data);
             fetchForecastData(lat, lon); // Recupera le previsioni per le coordinate date

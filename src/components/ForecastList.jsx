@@ -14,7 +14,7 @@ const ForecastList = () => {
             {forecastData
                 .filter((_, index) => index % 8 === 0) // Filtra per ottenere una previsione giornaliera
                 .map((forecast, index) => (
-                    <div key={index} className="p-4 bg-white rounded-lg shadow-md text-center">
+                    <div key={index} className="p-2 bg-white rounded-lg shadow-md text-center">
                         
                         {/* Data della previsione */}
                         <p className="font-semibold text-gray-600">
