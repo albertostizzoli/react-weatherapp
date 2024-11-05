@@ -1,22 +1,39 @@
 import React from "react";
+import { useWeather } from "../context/WeatherContext";
 
+// Componente WeatherDetails che mostra i dettagli del meteo per la città selezionata
 const WeatherDetails = () => {
 
+    // Recupera weatherData dal contesto tramite il hook useWeather
+    const { weatherData } = useWeather();
+
     return (
+        // Contenitore principale con stile per i dettagli del meteo
         <div className="mt-8 p-6 bg-white rounded-lg shadow-lg max-w-sm text-center">
-            <h2 className="text-2xl font-semibold text-gray-700">NOME</h2>
-            <p className="text-3xl font-bold text-blue-600">Temperatura</p>
-            <p className="text-gray-600">Descrizione</p>
+            
+            {/* Nome della città */}
+            <h2 className="text-2xl font-semibold text-gray-700">{weatherData.name}</h2>
+            
+            {/* Temperatura attuale della città */}
+            <p className="text-3xl font-bold text-blue-600">{weatherData.main.temp}°C</p>
+            
+            {/* Descrizione delle condizioni meteorologiche (ad esempio, "sereno", "pioggia") */}
+            <p className="text-gray-600">{weatherData.weather[0].description}</p>
             <div className="mt-4 flex justify-around">
                 <div>
                     <p className="text-gray-500">Umidità</p>
-                    <p className="font-semibold">Umidità in %</p>
+                    <p className="font-semibold">{weatherData.main.humidity}%</p>
                 </div>
                 <div>
                     <p className="text-gray-500">Vento</p>
-                    <p className="font-semibold">Vento in m/s</p>
+                    <p className="font-semibold">{weatherData.wind.speed} m/s</p>
                 </div>
             </div>
+            <img 
+                src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
+                alt="Meteo Icon" 
+                className="mx-auto mt-4"
+            />
         </div>
     );
 };
