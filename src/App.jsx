@@ -1,6 +1,7 @@
 import React from "react"
 import SearchBar from "./components/SearchBar";
 import WeatherDetails from "./components/WeatherDetails";
+import ForecastList from "./components/ForecastList";
 
 const MainApp = () => {
 
@@ -9,6 +10,7 @@ const MainApp = () => {
       <h1 className="text-4xl font-bold mb-6 text-gray-800">Weather App</h1>
       <SearchBar/>
       <WeatherDetails/>
+      <ForecastList/>
     </div>
   );
 };
