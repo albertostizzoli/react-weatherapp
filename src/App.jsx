@@ -1,14 +1,18 @@
 import React from "react"
+import SearchBar from "./components/SearchBar";
 
-function App() {
+const MainApp = () => {
 
   return (
-    <>
-      <h1 className="text-3xl font-bold underline bg-red-700 text-center">
-        Hello world!
-      </h1>
-    </>
-  )
-}
+    <div className="min-h-screen flex flex-col items-center justify-center bg-blue-50">
+      <h1 className="text-4xl font-bold mb-6 text-gray-800">Weather App</h1>
+      <SearchBar/>
+    </div>
+  );
+};
 
-export default App
+const App = () => (
+  <MainApp/>
+);
+
+export default App;
