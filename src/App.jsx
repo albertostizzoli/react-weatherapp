@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
 import WeatherDetails from "./components/WeatherDetails";
 import ForecastList from "./components/ForecastList";
+import Footer from "./components/Footer";
 
 const MainApp = () => {
 
@@ -14,6 +15,7 @@ const MainApp = () => {
         <WeatherDetails />
         <ForecastList />
       </div>
+      <Footer/>
     </div>
   );
 };
