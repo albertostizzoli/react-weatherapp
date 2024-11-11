@@ -6,6 +6,7 @@ const ForecastList = () => {
     // Recupera forecastData dal contesto tramite il hook useWeather
     const { forecastData } = useWeather();
 
+    // Ottiene la data corrente formattata secondo il formato italiano (giorno/mese/anno)
     const today = new Date().toLocaleDateString("it-IT");
 
     return (
@@ -61,7 +62,7 @@ const ForecastList = () => {
                                 </td>
 
                                 {/* Condizioni meteo con icona */}
-                                <td className="px-4 py-2 text-gray-500 flex items-center">
+                                <td className="px-4 py-2 text-gray-500 flex items-center font-semibold">
                                     <img
                                         src={`https://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`}
                                         alt="Meteo Icon"
