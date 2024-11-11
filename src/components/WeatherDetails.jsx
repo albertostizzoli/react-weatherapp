@@ -1,5 +1,6 @@
 import React from "react";
 import { useWeather } from "../context/WeatherContext";
+import { motion } from "framer-motion";
 
 // Componente WeatherDetails che mostra i dettagli del meteo per la città selezionata
 const WeatherDetails = () => {
@@ -7,9 +8,25 @@ const WeatherDetails = () => {
     // Recupera weatherData dal contesto tramite il hook useWeather
     const { weatherData } = useWeather();
 
+    const card = {
+        initial: {
+            x: -100,
+            opacity: 0
+        },
+
+        animate: {
+            x: 0,
+            opacity: 1,
+            transition: {
+                duration: 1,
+                staggerChildren: 0.1
+            }
+        }
+    };
+
     return (
         // Contenitore principale con stile per i dettagli del meteo
-        <div className="mt-8 p-6 bg-white rounded-lg shadow-lg max-w-sm text-center">
+        <motion.div className="mt-8 p-6 bg-white rounded-lg shadow-lg max-w-sm text-center" variants={card} initial="initial" whileInView="animate">
 
             {/* Nome della città */}
             <h2 className="text-2xl font-semibold text-gray-700">{weatherData.name}</h2>
@@ -50,7 +67,7 @@ const WeatherDetails = () => {
                 />
                 <p className="text-gray-600 mt-7 font-semibold">{weatherData.weather[0].description}</p>
             </div>
-        </div>
+        </motion.div>
 
     );
 };
