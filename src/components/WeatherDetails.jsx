@@ -29,9 +29,7 @@ const WeatherDetails = () => {
                 </div>
             </div>
 
-            {/* Descrizione delle condizioni meteorologiche (ad esempio, "sereno", "pioggia") */}
-            <p className="text-gray-600 mt-4 font-semibold">{weatherData.weather[0].description}</p>
-
+            {/* Umidità e Vento */}
             <div className="mt-4 flex justify-between">
                 <div>
                     <p className="text-gray-500">Umidità</p>
@@ -43,11 +41,15 @@ const WeatherDetails = () => {
                 </div>
             </div>
 
-            <img
-                src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
-                alt="Meteo Icon"
-                className="mx-auto mt-4"
-            />
+            {/* Condizioni */}
+            <div className="flex justify-between">
+                <img
+                    src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
+                    alt="Meteo Icon"
+                    className="mx-auto mt-4"
+                />
+                <p className="text-gray-600 mt-7 font-semibold">{weatherData.weather[0].description}</p>
+            </div>
         </div>
 
     );
