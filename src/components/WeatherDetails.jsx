@@ -10,16 +10,15 @@ const WeatherDetails = () => {
 
     const card = {
         initial: {
-            x: -100,
-            opacity: 0
+            x: -100, // Il testo parte da 100px a sinistra
+            opacity: 0 // Il testo parte con opacità 0 (invisibile)
         },
-
         animate: {
-            x: 0,
-            opacity: 1,
+            x: 0, // Il testo si sposta nella posizione originale
+            opacity: 1, // Il testo diventa completamente visibile
             transition: {
-                duration: 1,
-                staggerChildren: 0.1
+                duration: 1, // Durata dell'animazione in secondi
+                staggerChildren: 0.1 // Ritardo di 0.1 secondi tra l'animazione di ciascun figlio
             }
         }
     };
