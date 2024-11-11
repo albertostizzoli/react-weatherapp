@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { WeatherProvider, useWeather } from "./context/WeatherContext";
 
 import Header from "./components/Header";
-import SearchBar from "./components/SearchBar";
 import WeatherDetails from "./components/WeatherDetails";
 import ForecastList from "./components/ForecastList";
 import Footer from "./components/Footer";
@@ -32,9 +31,8 @@ const MainApp = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-blue-50">
       <Header />
-      <div className="flex-grow flex flex-col items-center justify-center">
-        <SearchBar />
-  
+      <div className="flex-grow flex flex-row items-center justify-evenly w-full">
+
         {/* Contenuto principale dell'applicazione */}
         {loading ? (
           // Mostra un messaggio di caricamento mentre i dati sono in fase di recupero
@@ -43,12 +41,15 @@ const MainApp = () => {
           <>
             {/* Messaggio di errore se presente */}
             {error && <p className="text-red-500 mt-4">{error}</p>}
-            
-            {/* Dettagli meteo della città se i dati sono disponibili */}
-            {weatherData && <WeatherDetails />}
-            
-            {/* Lista delle previsioni se i dati sono disponibili */}
-            {forecastData.length > 0 && <ForecastList />}
+            <div>
+              {/* Dettagli meteo della città se i dati sono disponibili */}
+              {weatherData && <WeatherDetails />}
+            </div>
+
+            <div>
+              {/* Lista delle previsioni se i dati sono disponibili */}
+              {forecastData.length > 0 && <ForecastList />}
+            </div>
           </>
         )}
       </div>

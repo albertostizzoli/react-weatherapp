@@ -15,17 +15,17 @@ const SearchBar = () => {
 
     return (
         // Form per la ricerca della città, che esegue la funzione handleSearch al submit
-        <form onSubmit={handleSearch} className="flex space-x-3 w-full max-w-md mt-4">
+        <form onSubmit={handleSearch} className="flex space-x-3 w-full max-w-md mt-2">
             <input
                 type="text"
                 placeholder="Inserisci città" // Placeholder per indicare all'utente di inserire una città
                 value={city} // Il valore dell'input è sincronizzato con la variabile city
                 onChange={(e) => setCity(e.target.value)} // Aggiorna city ogni volta che l'input cambia
-                className="flex-grow p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="flex-grow p-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <button
                 type="submit"
-                className="p-3 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300" 
+                className="p-3 bg-blue-400 text-white font-semibold rounded-lg shadow-md" 
             >
                 Cerca
             </button>
