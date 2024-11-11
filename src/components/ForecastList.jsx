@@ -25,9 +25,9 @@ const ForecastList = () => {
                 <tbody>
                     {forecastData
                         .filter((forecast, index) =>
-                            index % 8 === 0 &&
+                            index % 8 === 0 && // seleziona una previsione ogni 24 ore
                             new Date(forecast.dt * 1000).toLocaleDateString("it-IT") !== today
-                        ) // Filtra per ottenere una previsione giornaliera
+                        )
                         .map((forecast, index) => (
                             <tr key={index} className="border-b">
                                 {/* Data della previsione */}
