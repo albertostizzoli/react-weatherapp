@@ -38,7 +38,17 @@ const HourlyForecast = () => {
         inertiaScroll(); // Avvia lo scorrimento con inerzia
     };
 
+    // Scorrimento inerziale
+    const inertiaScroll = () => {
+        if (Math.abs(velocity) < 0.1) return; // Interrompe se la velocità è troppo bassa
+        forecastContainerRef.current.scrollLeft -= velocity; // Continua a scorrere in base alla velocità
+        setVelocity(velocity * 0.95); // Riduce la velocità gradualmente
+        animationFrameRef.current = requestAnimationFrame(inertiaScroll); // Richiama fino a fermarsi
+    };
+
     
+
+
 
 
 };
