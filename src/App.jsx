@@ -5,7 +5,7 @@ import { WeatherProvider, useWeather } from "./context/WeatherContext";
 import Header from "./components/Header";
 import WeatherDetails from "./components/WeatherDetails";
 import ForecastList from "./components/ForecastList";
-import Footer from "./components/Footer";
+
 
 // Componente principale che visualizza l'applicazione meteo
 const MainApp = () => {
@@ -53,7 +53,6 @@ const MainApp = () => {
           </>
         )}
       </div>
-      <Footer />
     </div>
   );
 };

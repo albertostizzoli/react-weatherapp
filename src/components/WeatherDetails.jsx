@@ -24,16 +24,9 @@ const WeatherDetails = () => {
     };
 
     return (
-        // Contenitore principale con stile per i dettagli del meteo
         <motion.div className="mt-8 p-6 bg-white rounded-lg shadow-lg max-w-sm text-center" variants={card} initial="initial" whileInView="animate">
-
-            {/* Nome della città */}
             <h2 className="text-2xl font-semibold text-gray-700">{weatherData.name}</h2>
-
-            {/* Temperatura attuale della città */}
             <p className="text-3xl font-bold text-blue-600">{weatherData.main.temp}°C</p>
-
-            {/* Temperature massima e minima */}
             <div className="mt-4 flex justify-between">
                 <div>
                     <p className="text-gray-500">Max:</p>
@@ -45,7 +38,6 @@ const WeatherDetails = () => {
                 </div>
             </div>
 
-            {/* Umidità e Vento */}
             <div className="mt-4 flex justify-between">
                 <div>
                     <p className="text-gray-500">Umidità</p>
@@ -56,8 +48,6 @@ const WeatherDetails = () => {
                     <p className="font-semibold">{weatherData.wind.speed} m/s</p>
                 </div>
             </div>
-
-            {/* Condizioni */}
             <div className="flex justify-between">
                 <img
                     src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}

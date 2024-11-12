@@ -47,37 +47,24 @@ const ForecastList = () => {
                         )
                         .map((forecast, index) => (
                             <tr key={index} className="border-b">
-                                {/* Data della previsione */}
                                 <td className="px-4 py-2 text-gray-600">
                                     {new Date(forecast.dt * 1000).toLocaleDateString("it-IT", { weekday: 'long' })}
                                 </td>
-
-                                {/* Temperatura prevista */}
                                 <td className="px-4 py-2 text-blue-600 font-bold">
                                     {forecast.main.temp}°C
                                 </td>
-
-                                {/* Temperatura massima */}
                                 <td className="px-4 py-2 text-gray-600">
                                     {forecast.main.temp_max}°C
                                 </td>
-
-                                {/* Temperatura minima */}
                                 <td className="px-4 py-2 text-gray-600">
                                     {forecast.main.temp_min}°C
                                 </td>
-
-                                {/* Umidità */}
                                 <td className="px-4 py-2 text-gray-600">
                                     {forecast.main.humidity}%
                                 </td>
-
-                                {/* Velocità del vento */}
                                 <td className="px-4 py-2 text-gray-600">
                                     {forecast.wind.speed} m/s
                                 </td>
-
-                                {/* Condizioni meteo con icona */}
                                 <td className="px-4 py-2 text-gray-500 flex items-center font-semibold">
                                     <img
                                         src={`https://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`}
