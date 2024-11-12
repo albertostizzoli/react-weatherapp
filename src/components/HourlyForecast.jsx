@@ -46,10 +46,13 @@ const HourlyForecast = () => {
         animationFrameRef.current = requestAnimationFrame(inertiaScroll); // Richiama fino a fermarsi
     };
 
-    
-
-
-
+    // Formatta il timestamp UNIX per mostrare solo l'orario
+    const formatTime = () => {
+        return new Date(timestamp * 1000).toLocaleTimeString('it-IT', {
+            hour: '2-digit',
+            minute: '2-digit',
+        });
+    };
 
 };
 
