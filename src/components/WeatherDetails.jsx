@@ -24,40 +24,37 @@ const WeatherDetails = () => {
     };
 
     return (
-        <motion.div className="mt-8 p-6 bg-white rounded-lg shadow-lg max-w-sm text-center" variants={card} initial="initial" whileInView="animate">
-            <h2 className="text-2xl font-semibold text-gray-700">{weatherData.name}</h2>
-            <p className="text-3xl font-bold text-blue-600">{weatherData.main.temp}°C</p>
-            <div className="mt-4 flex justify-between">
-                <div>
-                    <p className="text-gray-500">Max:</p>
-                    <p className="font-semibold">{weatherData.main.temp_max}°C</p>
-                </div>
-                <div>
-                    <p className="text-gray-500">Min:</p>
-                    <p className="font-semibold">{weatherData.main.temp_min}°C</p>
-                </div>
-            </div>
 
-            <div className="mt-4 flex justify-between">
-                <div>
-                    <p className="text-gray-500">Umidità</p>
-                    <p className="font-semibold">{weatherData.main.humidity}%</p>
+        <motion.div className="flex flex-col items-center text-center space-y-6 p-6 bg-white shadow-md rounded-lg max-w-md mx-auto" variants={card} initial="initial" whileInView="animate">
+            <div className="flex flex-col w-full p-6 rounded-lg bg-gradient-to-r from-blue-100 via-blue-200 to-blue-300 shadow-lg">
+                <div className="flex items-center justify-center space-x-4 mb-4">
+                    <h2 className="text-3xl font-semibold text-gray-800">{weatherData.name}</h2>
                 </div>
-                <div>
-                    <p className="text-gray-500">Vento</p>
-                    <p className="font-semibold">{weatherData.wind.speed} m/s</p>
+                <p className="text-5xl font-bold mb-3 text-blue-700">{weatherData.main.temp}°C</p>
+                <div className="flex items-center justify-center space-x-4 mb-4">
+                    <img
+                        src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
+                        alt="Meteo Icon"
+                        className="w-20 h-20"
+                    />
+                    <p className="text-2xl capitalize text-gray-700">{weatherData.weather[0].description}</p>
                 </div>
-            </div>
-            <div className="flex justify-between">
-                <img
-                    src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
-                    alt="Meteo Icon"
-                    className="mx-auto mt-4"
-                />
-                <p className="text-gray-600 mt-7 font-semibold">{weatherData.weather[0].description}</p>
+                <div className="grid grid-cols-2 gap-4 text-lg font-medium mt-4 text-gray-800">
+                    <div><strong>MAX:</strong> {weatherData.main.temp_max}°C</div>
+                    <div><strong>MIN:</strong> {weatherData.main.temp_min}°C</div>
+                </div>
+                <div className="flex justify-around items-center mt-6 w-full">
+                    <div className="flex flex-col items-center">
+                        <p className="text-gray-600 text-base">Umidità</p>
+                        <p className="font-semibold text-xl text-gray-800">{weatherData.main.humidity}%</p>
+                    </div>
+                    <div className="flex flex-col items-center">
+                        <p className="text-gray-600 text-base">Vento</p>
+                        <p className="font-semibold text-xl text-gray-800">{weatherData.wind.speed} m/s</p>
+                    </div>
+                </div>
             </div>
         </motion.div>
-
     );
 };
 
