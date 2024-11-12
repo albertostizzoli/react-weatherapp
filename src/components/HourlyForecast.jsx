@@ -32,6 +32,15 @@ const HourlyForecast = () => {
         setVelocity(walk); // Aggiorna la velocità corrente
     };
 
+    // Funzione per terminare il drag e avviare lo scorrimento inerziale
+    const stopDrag = () => {
+        setIsDragging(false);  // Termina il drag
+        inertiaScroll(); // Avvia lo scorrimento con inerzia
+    };
+
+    
+
+
 };
 
 export default HourlyForecast;
