@@ -2,3 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Esempio di stile per il carosello */
+.overflow-hidden {
+    overflow: hidden;
+}
+.transition-transform {
+    transition: transform 0.5s ease-in-out;
+}
