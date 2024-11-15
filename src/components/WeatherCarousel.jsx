@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useWeather } from "../context/WeatherContext";
+import { motion } from "framer-motion";
 
 const WeatherCarousel = () => {
     const { forecastData } = useWeather();
@@ -19,8 +20,23 @@ const WeatherCarousel = () => {
         );
     };
 
+    const carousel = {
+        initial: {
+            x: -100,
+            opacity: 0
+        },
+        animate: {
+            x: 0,
+            opacity: 1,
+            transition: {
+                duration: 1,
+                staggerChildren: 0.1
+            }
+        }
+    };
+
     return (
-        <div className="relative w-full max-w-md mx-auto">
+        <motion.div className="relative w-full max-w-md mx-auto" variants={carousel} initial="initial" whileInView="animate">
             <div className="overflow-hidden">
                 <div className="flex transition-transform duration-500" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                     {forecastData.map((forecast, index) => (
@@ -69,7 +85,7 @@ const WeatherCarousel = () => {
                     </button>
                 </>
             )}
-        </div>
+        </motion.div>
     );
 };
 
