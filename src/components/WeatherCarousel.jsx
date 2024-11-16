@@ -1,36 +1,42 @@
 import React from "react";
 import { useState } from "react";
-import { useWeather } from "../context/WeatherContext";
-import { motion } from "framer-motion";
+import { useWeather } from "../context/WeatherContext"; 
+import { motion } from "framer-motion"; 
 
+
+// Componente WeatherCarousel che mostra le previsioni di ogni 3 ore dal momento della ricerca
 const WeatherCarousel = () => {
+    // Ottiene i dati delle previsioni meteo dal contesto WeatherContext
     const { forecastData } = useWeather();
+    // Stato per tenere traccia dell'indice della slide corrente
     const [currentIndex, setCurrentIndex] = useState(0);
 
-
+    // Funzione per passare alla slide successiva
     const nextSlide = () => {
         setCurrentIndex((prevIndex) =>
             prevIndex === forecastData.length - 1 ? 0 : prevIndex + 1
         );
     };
 
+    // Funzione per passare alla slide precedente
     const prevSlide = () => {
         setCurrentIndex((prevIndex) =>
             prevIndex === 0 ? forecastData.length - 1 : prevIndex - 1
         );
     };
 
+    // Definisce le animazioni per il carosello usando framer-motion
     const carousel = {
         initial: {
-            x: -100,
-            opacity: 0
+            x: -100, // Inizialmente la slide parte da sinistra (fuori dallo schermo)
+            opacity: 0 // La slide è invisibile all'inizio
         },
         animate: {
-            x: 0,
-            opacity: 1,
+            x: 0, // Posiziona la slide al centro (visibile)
+            opacity: 1, // Rende la slide visibile
             transition: {
-                duration: 1,
-                staggerChildren: 0.1
+                duration: 1, // Durata della transizione
+                staggerChildren: 0.1 // Distanzia le animazioni dei figli (slide) per un effetto fluido
             }
         }
     };
@@ -39,13 +45,14 @@ const WeatherCarousel = () => {
         <motion.div className="relative w-full max-w-md mx-auto" variants={carousel} initial="initial" whileInView="animate">
             <div className="overflow-hidden">
                 <div className="flex transition-transform duration-500" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+                    {/* Mappa i dati delle previsioni e crea una slide per ogni elemento */}
                     {forecastData.map((forecast, index) => (
                         <div key={index} className="p-6 bg-gradient-to-r from-blue-100 via-blue-200 to-blue-200 shadow-lg rounded-lg text-center min-w-full">
                             <h3 className="text-3xl font-semibold text-gray-800">
                                 {new Date(forecast.dt * 1000).toLocaleString("it-IT", {
-                                    weekday: "short",
-                                    hour: "2-digit",
-                                    minute: "2-digit",
+                                    weekday: "short", // Giorno della settimana abbreviato
+                                    hour: "2-digit", // Ora in formato 2 cifre
+                                    minute: "2-digit", // Minuti in formato 2 cifre
                                 })}
                             </h3>
                             <p className="text-4xl font-bold text-blue-700">{forecast.main.temp} °C</p>
@@ -74,14 +81,14 @@ const WeatherCarousel = () => {
                 </div>
             </div>
 
-            {/* Pulsanti per navigare */}
+            {/* Pulsanti per navigare tra le slides (visibili solo se ci sono dati nella previsione) */}
             {forecastData.length > 0 && (
                 <>
                     <button onClick={prevSlide} className="absolute top-1/2 left-0 transform -translate-y-1/2 text-blue-500 text-5xl p-4 rounded-full">
-                        &lt;
+                        &lt; 
                     </button>
                     <button onClick={nextSlide} className="absolute top-1/2 right-0 transform -translate-y-1/2 text-blue-500 text-5xl p-4 rounded-full">
-                        &gt;
+                        &gt; 
                     </button>
                 </>
             )}

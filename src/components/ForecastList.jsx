@@ -1,33 +1,59 @@
 import React from "react";
-import { useWeather } from "../context/WeatherContext";
-import { motion } from "framer-motion";
+import { useWeather } from "../context/WeatherContext"; 
+import { motion } from "framer-motion"; 
 
-// Componente ForecastList che mostra una tabella di previsioni meteo per i prossimi giorni
+
+// Funzione per raggruppare le previsioni meteo per data
+const groupForecastByDate = (forecastData) => {
+    const grouped = {};
+
+    // Itera su tutte le previsioni e raggruppa i dati in base alla data
+    forecastData.forEach((forecast) => {
+        const date = new Date(forecast.dt * 1000).toLocaleDateString("it-IT");
+        if (!grouped[date]) {
+            grouped[date] = [];
+        }
+        grouped[date].push(forecast); // Aggiunge la previsione al gruppo per quella data
+    });
+
+    return grouped;
+};
+
+// Funzione per calcolare la temperatura massima e minima di un giorno
+const getMaxMinTemps = (forecasts) => {
+    const temps = forecasts.map((forecast) => forecast.main.temp); // Estrae le temperature dalle previsioni
+    const maxTemp = Math.max(...temps); // Trova la temperatura massima
+    const minTemp = Math.min(...temps); // Trova la temperatura minima
+    return { maxTemp, minTemp };
+};
+
+// Componente ForecastList che mostra le previsioni dei giorni successivi
 const ForecastList = () => {
-    // Recupera forecastData dal contesto tramite il hook useWeather
-    const { forecastData } = useWeather();
+    const { forecastData } = useWeather(); // Ottiene i dati delle previsioni meteo dal contesto
 
-    // Ottiene la data corrente formattata secondo il formato italiano (giorno/mese/anno)
-    const today = new Date().toLocaleDateString("it-IT");
+    const today = new Date().toLocaleDateString("it-IT"); // Ottiene la data odierna in formato italiano
 
+    // Definisce le animazioni per la tabella con framer-motion
     const table = {
         initial: {
-            x: 100, // L'immagine parte da 100px a destra
-            opacity: 0 // L'immagine parte con opacità 0 (invisibile)
+            x: 100, // La tabella inizia fuori dalla vista (a destra)
+            opacity: 0 // La tabella inizia invisibile
         },
         animate: {
-            x: 0, // L'immagine si sposta nella posizione originale
-            opacity: 1, // L'immagine diventa completamente visibile
+            x: 0, // Porta la tabella alla posizione centrale
+            opacity: 1, // Rende la tabella visibile
             transition: {
-                duration: 1, // Durata dell'animazione in secondi
-                staggerChildren: 0.1 // Ritardo di 0.1 secondi tra l'animazione di ciascun figlio
+                duration: 1, // Durata della transizione
+                staggerChildren: 0.1 // Staggering per le righe della tabella, animandole in sequenza
             }
         }
     };
 
-    return (
+    // Raggruppa le previsioni meteo per data
+    const groupedForecasts = groupForecastByDate(forecastData);
 
-        <motion.div className="mt-1 overflow-x-auto" variants={table} initial="initial" whileInView="animate">
+    return (
+        <motion.div className="overflow-x-auto" variants={table} initial="initial" whileInView="animate">
             <table className="min-w-full bg-white rounded-lg shadow-md overflow-hidden">
                 <thead>
                     <tr className="text-white bg-gradient-to-r from-blue-500 to-blue-700">
@@ -41,35 +67,38 @@ const ForecastList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                     {/* Ciclo per iterare attraverso forecastData e generare le righe della tabella */}
+                    {/* Itera sui gruppi di previsioni per data */}
+                    {Object.keys(groupedForecasts).map((date, index) => {
+                        if (date !== today) { // Non visualizza le previsioni per oggi
+                            const { maxTemp, minTemp } = getMaxMinTemps(groupedForecasts[date]); // Ottiene le temperature massima e minima per la data
+                            const forecast = groupedForecasts[date][0]; // Prende la prima previsione del giorno (presumibilmente, quella più rappresentativa)
 
-                    {forecastData
-                     // Filtra le previsioni per mostrare solo una previsione ogni 24 ore tranne la giornata attuale
-                        .filter((forecast, index) => index % 8 === 0 && new Date(forecast.dt * 1000).toLocaleDateString("it-IT") !== today)
-                        .map((forecast, index) => (
-                            <tr key={index} className="border-b last:border-none hover:bg-blue-50 transition-colors">
-                                <td className="px-6 py-2 text-gray-700 font-medium text-center">
-                                    {new Date(forecast.dt * 1000).toLocaleDateString("it-IT", { weekday: 'long' })}
-                                </td>
-                                <td className="px-6 py-2 text-blue-600 font-bold text-center">{forecast.main.temp}°C</td>
-                                <td className="px-6 py-2 text-gray-600 font-semibold text-center">{forecast.main.temp_max}°C</td>
-                                <td className="px-6 py-2 text-gray-600 font-semibold text-center">{forecast.main.temp_min}°C</td>
-                                <td className="px-6 py-2 text-gray-600 font-semibold text-center">{forecast.main.humidity}%</td>
-                                <td className="px-6 py-2 text-gray-600 font-semibold text-center">{forecast.wind.speed} m/s</td>
-                                <td className="px-6 py-2 flex items-center justify-center text-gray-600 font-semibold">
-                                    <img
-                                        src={`https://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`}
-                                        alt="Meteo Icon"
-                                        className="w-8 h-8 mr-2"
-                                    />
-                                    <span className="capitalize">{forecast.weather[0].description}</span>
-                                </td>
-                            </tr>
-                        ))}
+                            return (
+                                <tr key={index} className="border-b last:border-none hover:bg-blue-50 transition-colors">
+                                    <td className="px-6 py-2 text-gray-700 font-medium text-center">
+                                        {date} 
+                                    </td>
+                                    <td className="px-6 py-2 text-blue-600 font-bold text-center">{forecast.main.temp}°C</td>
+                                    <td className="px-6 py-2 text-gray-600 font-semibold text-center">{maxTemp}°C</td>
+                                    <td className="px-6 py-2 text-gray-600 font-semibold text-center">{minTemp}°C</td>
+                                    <td className="px-6 py-2 text-gray-600 font-semibold text-center">{forecast.main.humidity}%</td>
+                                    <td className="px-6 py-2 text-gray-600 font-semibold text-center">{forecast.wind.speed} m/s</td> 
+                                    <td className="px-6 py-2 flex items-center justify-center text-gray-600 font-semibold">
+                                        <img
+                                            src={`https://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`}
+                                            alt="Meteo Icon"
+                                            className="w-8 h-8 mr-2"
+                                        />
+                                        <span className="capitalize">{forecast.weather[0].description}</span>
+                                    </td>
+                                </tr>
+                            );
+                        }
+                        return null; // Non restituisce nulla se la data è oggi
+                    })}
                 </tbody>
             </table>
         </motion.div>
-
     );
 };
 
