@@ -24,37 +24,38 @@ const WeatherDetails = () => {
     };
 
     return (
-
-        <motion.div className="flex flex-col items-center text-center space-y-6 p-6 bg-white shadow-md rounded-lg max-w-md mx-auto" variants={card} initial="initial" whileInView="animate">
+        <motion.div className="flex flex-col items-center text-center space-y-6 p-6 max-w-md mx-auto" variants={card} initial="initial" whileInView="animate">
             <div className="flex flex-col w-full p-6 rounded-lg bg-gradient-to-r from-blue-100 via-blue-200 to-blue-300 shadow-lg">
-                <div className="flex items-center justify-center space-x-4 mb-4">
+                <div className="flex items-center justify-center space-x-4 ">
                     <h2 className="text-3xl font-semibold text-gray-800">{weatherData.name}</h2>
                 </div>
-                <p className="text-5xl font-bold mb-3 text-blue-700">{weatherData.main.temp}°C</p>
-                <div className="flex items-center justify-center space-x-4 mb-4">
+                <p className="text-4xl font-bold  text-blue-700">{weatherData.main.temp}°C</p>
+                <div className="flex items-center justify-center space-x-4">
                     <img
                         src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
                         alt="Meteo Icon"
-                        className="w-20 h-20"
+                        className="w-16 h-16"
                     />
                     <p className="text-2xl capitalize text-gray-700">{weatherData.weather[0].description}</p>
                 </div>
-                <div className="grid grid-cols-2 gap-4 text-lg font-medium mt-4 text-gray-800">
+                <div className="grid grid-cols-2 gap-4 text-lg font-medium  text-gray-800">
                     <div><strong>MAX:</strong> {weatherData.main.temp_max}°C</div>
                     <div><strong>MIN:</strong> {weatherData.main.temp_min}°C</div>
                 </div>
-                <div className="flex justify-around items-center mt-6 w-full">
+                <div className="flex justify-around items-center w-full">
                     <div className="flex flex-col items-center">
-                        <p className="text-gray-600 text-base">Umidità</p>
+                        <p className="text-gray-600 font-bold text-xl">Umidità</p>
                         <p className="font-semibold text-xl text-gray-800">{weatherData.main.humidity}%</p>
                     </div>
                     <div className="flex flex-col items-center">
-                        <p className="text-gray-600 text-base">Vento</p>
+                        <p className="text-gray-600 font-bold text-xl">Vento</p>
                         <p className="font-semibold text-xl text-gray-800">{weatherData.wind.speed} m/s</p>
                     </div>
                 </div>
             </div>
         </motion.div>
+
+
     );
 };
 

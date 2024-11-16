@@ -41,31 +41,31 @@ const WeatherCarousel = () => {
                 <div className="flex transition-transform duration-500" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                     {forecastData.map((forecast, index) => (
                         <div key={index} className="p-6 bg-gradient-to-r from-blue-100 via-blue-200 to-blue-200 shadow-lg rounded-lg text-center min-w-full">
-                            <h3 className="text-2xl font-semibold text-gray-800">
+                            <h3 className="text-3xl font-semibold text-gray-800">
                                 {new Date(forecast.dt * 1000).toLocaleString("it-IT", {
                                     weekday: "short",
                                     hour: "2-digit",
                                     minute: "2-digit",
                                 })}
                             </h3>
-                            <p className="text-5xl font-bold mb-3 text-blue-700">{forecast.main.temp} °C</p>
-                            <div className="flex items-center justify-center space-x-4 mb-4">
+                            <p className="text-4xl font-bold text-blue-700">{forecast.main.temp} °C</p>
+                            <div className="flex items-center justify-center space-x-4">
                                 <img src={`https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png`} alt={forecast.weather[0].description} className="w-16 h-16" />
                                 <p className="text-2xl capitalize text-gray-700">
                                     {forecast.weather[0].description}
                                 </p>
                             </div>
-                            <div className="grid grid-cols-2 gap-4 text-lg font-medium mt-4 text-gray-800">
+                            <div className="grid grid-cols-2 gap-4 text-lg font-medium text-gray-800">
                                 <div><strong>MAX:</strong> {forecast.main.temp_max}°C</div>
                                 <div><strong>MIN:</strong> {forecast.main.temp_min}°C</div>
                             </div>
-                            <div className="flex justify-around items-center mt-6 w-full">
+                            <div className="flex justify-around items-center w-full">
                                 <div className="flex flex-col items-center">
-                                    <p className="text-gray-600 text-base">Umidità</p>
+                                    <p className="text-gray-600 text-xl font-bold">Umidità</p>
                                     <p className="font-semibold text-xl text-gray-800">{forecast.main.humidity}%</p>
                                 </div>
                                 <div className="flex flex-col items-center">
-                                    <p className="text-gray-600 text-base">Vento</p>
+                                    <p className="text-gray-600 text-xl font-bold">Vento</p>
                                     <p className="font-semibold text-xl text-gray-800">{forecast.wind.speed} m/s</p>
                                 </div>
                             </div>
@@ -77,10 +77,10 @@ const WeatherCarousel = () => {
             {/* Pulsanti per navigare */}
             {forecastData.length > 0 && (
                 <>
-                    <button onClick={prevSlide} className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-blue-500 text-white p-2 rounded-full">
+                    <button onClick={prevSlide} className="absolute top-1/2 left-0 transform -translate-y-1/2 text-blue-500 text-5xl p-4 rounded-full">
                         &lt;
                     </button>
-                    <button onClick={nextSlide} className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-blue-500 text-white p-2 rounded-full">
+                    <button onClick={nextSlide} className="absolute top-1/2 right-0 transform -translate-y-1/2 text-blue-500 text-5xl p-4 rounded-full">
                         &gt;
                     </button>
                 </>

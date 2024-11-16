@@ -33,29 +33,20 @@ const MainApp = () => {
     <div className="min-h-screen flex flex-col items-center justify-center bg-blue-50">
       <Header />
       <div className="flex-grow flex flex-row items-center justify-evenly w-full">
-
-        {/* Contenuto principale dell'applicazione */}
         {loading ? (
-          // Mostra un messaggio di caricamento mentre i dati sono in fase di recupero
           <p className="text-gray-500 mt-4">Caricamento in corso...</p>
         ) : (
           <>
-            {/* Messaggio di errore se presente */}
             {error && <p className="text-red-500 mt-4">{error}</p>}
             <div>
-              {/* Dettagli meteo della città se i dati sono disponibili */}
               {weatherData && <WeatherDetails />}
+              {forecastData.length > 0 && <WeatherCarousel />}
             </div>
-
             <div>
-              {/* Lista delle previsioni se i dati sono disponibili */}
               {forecastData.length > 0 && <ForecastList />}
             </div>
           </>
         )}
-      </div>
-      <div>
-        <WeatherCarousel />
       </div>
     </div>
   );
