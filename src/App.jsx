@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
 import { WeatherProvider, useWeather } from "./context/WeatherContext";
 
 import Header from "./components/Header";
@@ -12,22 +11,7 @@ import WeatherCarousel from "./components/WeatherCarousel";
 const MainApp = () => {
 
   // Recupera dati e funzioni dal contesto tramite il hook useWeather
-  const { weatherData, forecastData, loading, error, fetchWeatherDataByLocation } = useWeather();
-
-  // Hook useEffect che ottiene la posizione dell'utente alla prima visualizzazione del componente
-  useEffect(() => {
-    // Richiede la posizione dell'utente tramite l'API di geolocalizzazione del browser
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        // Ottiene le coordinate geografiche
-        const { latitude, longitude } = position.coords;
-        // Chiama la funzione per ottenere i dati meteo in base alla posizione dell'utente
-        fetchWeatherDataByLocation(latitude, longitude);
-      },
-      // Gestisce eventuali errori di geolocalizzazione (es. permesso negato)
-      (error) => console.error("Geolocalizzazione non permessa", error)
-    );
-  }, []);
+  const { weatherData, forecastData, loading, error } = useWeather();
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-blue-50">
