@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 // Funzione per raggruppare le previsioni meteo per data
 const groupForecastByDate = (forecastData) => {
-    const grouped = {};
+    const grouped = {}; // variabile inizializzata come oggetto vuoto
 
     // Itera su tutte le previsioni e raggruppa i dati in base alla data
     forecastData.forEach((forecast) => {
