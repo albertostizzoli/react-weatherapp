@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import WeatherDetails from "./components/WeatherDetails";
 import ForecastList from "./components/ForecastList";
 import WeatherCarousel from "./components/WeatherCarousel";
+import ForecastGraph from "./components/ForecastGraph";
 
 
 // Componente principale che visualizza l'applicazione meteo
@@ -28,6 +29,7 @@ const MainApp = () => {
             </div>
             <div>
               {forecastData.length > 0 && <ForecastList />}
+              {forecastData.length > 0 && <ForecastGraph/>}
             </div>
           </>
         )}

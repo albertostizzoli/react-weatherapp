@@ -1,8 +1,8 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 import { useWeather } from "../context/WeatherContext";
-import { Legend, scales } from "chart.js";
 
+// Componente ForecastGraph che mostra i dati delle previsioni sotto forma di grafico
 const ForecastGraph = () => {
     const { forecastData } = useWeather();
 
@@ -51,6 +51,10 @@ const ForecastGraph = () => {
             },
         },
     };
+
+    return (
+        <Line data={data} options={options} />
+    );
 };
 
 export default ForecastGraph;
