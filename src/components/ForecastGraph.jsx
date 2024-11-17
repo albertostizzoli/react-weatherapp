@@ -13,8 +13,9 @@ const ForecastGraph = () => {
     // Controllo che forecastData contenga dati prima di renderizzare il grafico
     if (!forecastData || forecastData.length === 0) return null;
 
-    // Estraggo i valori di pressione atmosferica da ogni elemento di forecastData per creare il dataset
-    const pressureData = forecastData.map((data) => data.main.pressure);
+    // Estraggo i valori di umidità e vento da ogni elemento di forecastData per creare il dataset
+    const humidityData = forecastData.map((data) => data.main.humidity);
+    const windData = forecastData.map((data) => data.wind.speed);
 
     // Creo un array di etichette temporali convertendo il timestamp di ogni previsione in un orario leggibile
     const labels = forecastData.map((data) =>
@@ -26,11 +27,18 @@ const ForecastGraph = () => {
         labels: labels, // Array delle etichette temporali per l'asse X
         datasets: [
             {
-                label: 'Pressione Atmosferica (hPa)', // Etichetta del dataset
-                data: pressureData, // Array dei valori di pressione per l'asse Y
-                borderColor: 'rgba(75, 192, 192, 1)', // Colore della linea del grafico
-                backgroundColor: 'rgba(75, 192, 192, 0.2)', // Colore dell'area sotto la linea (riempimento)
-                fill: true, // Riempie l'area sotto la linea
+                label: 'Umidità (%)',
+                data: humidityData,
+                borderColor: 'rgba(54, 162, 235, 1)', // Colore blu
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                fill: true,
+            },
+            {
+                label: 'Vento (m/s)',
+                data: windData,
+                borderColor: 'rgba(255, 99, 132, 1)', // Colore rosso
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                fill: true,
             },
         ],
     };
@@ -47,7 +55,7 @@ const ForecastGraph = () => {
             y: {
                 title: {
                     display: true, // Mostra il titolo dell'asse Y
-                    text: 'Pressione (hPa)', // Testo del titolo sull'asse Y
+                    text: 'Valori', // Testo del titolo sull'asse Y
                 },
             },
             x: {
