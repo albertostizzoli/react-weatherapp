@@ -42,16 +42,6 @@ const WeatherDetails = () => {
                     <div><strong>MAX:</strong> {weatherData.main.temp_max}°C</div>
                     <div><strong>MIN:</strong> {weatherData.main.temp_min}°C</div>
                 </div>
-                <div className="flex justify-around items-center w-full">
-                    <div className="flex flex-col items-center">
-                        <p className="text-gray-600 font-bold text-xl">Umidità</p>
-                        <p className="font-semibold text-xl text-gray-800">{weatherData.main.humidity}%</p>
-                    </div>
-                    <div className="flex flex-col items-center">
-                        <p className="text-gray-600 font-bold text-xl">Vento</p>
-                        <p className="font-semibold text-xl text-gray-800">{weatherData.wind.speed} m/s</p>
-                    </div>
-                </div>
             </div>
         </motion.div>
 

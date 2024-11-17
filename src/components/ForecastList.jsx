@@ -61,8 +61,6 @@ const ForecastList = () => {
                         <th className="px-6 py-2 text-center font-semibold">Temperatura</th>
                         <th className="px-6 py-2 text-center font-semibold">Temp. Max</th>
                         <th className="px-6 py-2 text-center font-semibold">Temp. Min</th>
-                        <th className="px-6 py-2 text-center font-semibold">Umidità</th>
-                        <th className="px-6 py-2 text-center font-semibold">Vento</th>
                         <th className="px-6 py-2 text-center font-semibold">Condizioni</th>
                     </tr>
                 </thead>
@@ -81,8 +79,6 @@ const ForecastList = () => {
                                     <td className="px-6 py-2 text-blue-600 font-bold text-center">{forecast.main.temp}°C</td>
                                     <td className="px-6 py-2 text-gray-600 font-semibold text-center">{maxTemp}°C</td>
                                     <td className="px-6 py-2 text-gray-600 font-semibold text-center">{minTemp}°C</td>
-                                    <td className="px-6 py-2 text-gray-600 font-semibold text-center">{forecast.main.humidity}%</td>
-                                    <td className="px-6 py-2 text-gray-600 font-semibold text-center">{forecast.wind.speed} m/s</td> 
                                     <td className="px-6 py-2 flex items-center justify-center text-gray-600 font-semibold">
                                         <img
                                             src={`https://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`}

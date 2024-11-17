@@ -66,16 +66,6 @@ const WeatherCarousel = () => {
                                 <div><strong>MAX:</strong> {forecast.main.temp_max}°C</div>
                                 <div><strong>MIN:</strong> {forecast.main.temp_min}°C</div>
                             </div>
-                            <div className="flex justify-around items-center w-full">
-                                <div className="flex flex-col items-center">
-                                    <p className="text-gray-600 text-xl font-bold">Umidità</p>
-                                    <p className="font-semibold text-xl text-gray-800">{forecast.main.humidity}%</p>
-                                </div>
-                                <div className="flex flex-col items-center">
-                                    <p className="text-gray-600 text-xl font-bold">Vento</p>
-                                    <p className="font-semibold text-xl text-gray-800">{forecast.wind.speed} m/s</p>
-                                </div>
-                            </div>
                         </div>
                     ))}
                 </div>
