@@ -1,6 +1,7 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 import { useWeather } from "../context/WeatherContext";
+import { Legend, scales } from "chart.js";
 
 const ForecastGraph = () => {
     const { forecastData } = useWeather();
@@ -27,7 +28,29 @@ const ForecastGraph = () => {
         ],
     };
 
-    
+    // Configuro le opzioni del grafico per personalizzare il layout e la legenda
+    const options = {
+        responsive: true, // Rende il grafico responsivo alle dimensioni del contenitore
+        plugins: {
+            legend: {
+                position: 'top', // Posiziona la legenda del grafico in alto
+            },
+        },
+        scales: {
+            y: {
+                title: {
+                    display: true, // Mostra il titolo dell'asse Y
+                    text: 'Pressione (hPa)', // Testo del titolo sull'asse Y
+                },
+            },
+            x: {
+                title: {
+                    display: true, // Mostra il titolo dell'asse X
+                    text: 'Ora', // Testo del titolo sull'asse X
+                },
+            },
+        },
+    };
 };
 
 export default ForecastGraph;
