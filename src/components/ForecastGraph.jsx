@@ -1,10 +1,17 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
 import { useWeather } from "../context/WeatherContext";
+
+// Registro i componenti di Chart.js se necessari
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 // Componente ForecastGraph che mostra i dati delle previsioni sotto forma di grafico
 const ForecastGraph = () => {
     const { forecastData } = useWeather();
+
+    // Controllo che forecastData contenga dati prima di renderizzare il grafico
+    if (!forecastData || forecastData.length === 0) return null;
 
     // Estraggo i valori di pressione atmosferica da ogni elemento di forecastData per creare il dataset
     const pressureData = forecastData.map((data) => data.main.pressure);
