@@ -38,14 +38,12 @@ const WeatherDetails = () => {
                     />
                     <p className="text-2xl capitalize text-gray-700">{weatherData.weather[0].description}</p>
                 </div>
-                <div className="grid grid-cols-2 gap-4 text-lg font-medium  text-gray-800">
-                    <div><strong>MAX:</strong> {weatherData.main.temp_max}°C</div>
-                    <div><strong>MIN:</strong> {weatherData.main.temp_min}°C</div>
+                <div className="flex flex-col gap-4 text-lg font-medium  text-gray-800">
+                    <div><strong>TEMP.MAX:</strong> {weatherData.main.temp_max}°C</div>
+                    <div><strong>TEMP.MIN:</strong> {weatherData.main.temp_min}°C</div>
                 </div>
             </div>
         </motion.div>
-
-
     );
 };
 

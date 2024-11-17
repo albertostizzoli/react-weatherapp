@@ -62,9 +62,9 @@ const WeatherCarousel = () => {
                                     {forecast.weather[0].description}
                                 </p>
                             </div>
-                            <div className="grid grid-cols-2 gap-4 text-lg font-medium text-gray-800">
-                                <div><strong>MAX:</strong> {forecast.main.temp_max}°C</div>
-                                <div><strong>MIN:</strong> {forecast.main.temp_min}°C</div>
+                            <div className="flex flex-col gap-4 text-lg font-medium text-gray-800">
+                                <div><strong>TEMP.MAX:</strong> {forecast.main.temp_max}°C</div>
+                                <div><strong>TEMP.MIN:</strong> {forecast.main.temp_min}°C</div>
                             </div>
                         </div>
                     ))}
