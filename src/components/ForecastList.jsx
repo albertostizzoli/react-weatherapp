@@ -4,16 +4,17 @@ import { motion } from "framer-motion";
 
 
 // Funzione per raggruppare le previsioni meteo per data
-const groupForecastByDate = (forecastData) => {
+const groupForecastByDay = (forecastData) => {
     const grouped = {}; // variabile inizializzata come oggetto vuoto
 
     // Itera su tutte le previsioni e raggruppa i dati in base alla data
     forecastData.forEach((forecast) => {
-        const date = new Date(forecast.dt * 1000).toLocaleDateString("it-IT");
-        if (!grouped[date]) {
-            grouped[date] = [];
+        const date = new Date(forecast.dt * 1000);
+        const dayOfWeek = date.toLocaleDateString("it-IT", {weekday: "long"}); // Ottengo il giorno della settimana
+        if (!grouped[dayOfWeek]) {
+            grouped[dayOfWeek] = [];
         }
-        grouped[date].push(forecast); // Aggiunge la previsione al gruppo per quella data
+        grouped[dayOfWeek].push(forecast); // Aggiunge la previsione al gruppo per quel giorno
     });
 
     return grouped;
@@ -31,9 +32,9 @@ const getMaxMinTemps = (forecasts) => {
 const ForecastList = () => {
     const { forecastData } = useWeather(); // Ottiene i dati delle previsioni meteo dal contesto
 
-    const today = new Date().toLocaleDateString("it-IT"); // Ottiene la data odierna in formato italiano
+    const today = new Date().toLocaleDateString("it-IT", {weekday: "long"}); // Ottiene il giorno odierno in formato italiano
 
-    // Definisce le animazioni per la tabella con framer-motion
+    // Definisco le animazioni per la tabella con framer-motion
     const table = {
         initial: {
             x: 100, // La tabella inizia fuori dalla vista (a destra)
@@ -49,8 +50,8 @@ const ForecastList = () => {
         }
     };
 
-    // Raggruppa le previsioni meteo per data
-    const groupedForecasts = groupForecastByDate(forecastData);
+    // Raggruppa le previsioni meteo per giorno
+    const groupedForecasts = groupForecastByDay(forecastData);
 
     return (
         <motion.div className="overflow-x-auto" variants={table} initial="initial" whileInView="animate">
@@ -59,22 +60,22 @@ const ForecastList = () => {
                     <tr className="text-white bg-gradient-to-r from-blue-500 to-blue-700">
                         <th className="px-6 py-2 text-center font-semibold">Giorno</th>
                         <th className="px-6 py-2 text-center font-semibold">Temperatura</th>
-                        <th className="px-6 py-2 text-center font-semibold">Temp. Max</th>
-                        <th className="px-6 py-2 text-center font-semibold">Temp. Min</th>
+                        <th className="px-6 py-2 text-center font-semibold">Massima</th>
+                        <th className="px-6 py-2 text-center font-semibold">Minima</th>
                         <th className="px-6 py-2 text-center font-semibold">Condizioni</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {/* Itera sui gruppi di previsioni per data */}
-                    {Object.keys(groupedForecasts).map((date, index) => {
-                        if (date !== today) { // Non visualizza le previsioni per oggi
-                            const { maxTemp, minTemp } = getMaxMinTemps(groupedForecasts[date]); // Ottiene le temperature massima e minima per la data
-                            const forecast = groupedForecasts[date][0]; // Prende la prima previsione del giorno (presumibilmente, quella più rappresentativa)
+                    {/* Itera sui gruppi di previsioni per giorno */}
+                    {Object.keys(groupedForecasts).map((day, index) => {
+                        if (day !== today) { // Non visualizza le previsioni per oggi
+                            const { maxTemp, minTemp } = getMaxMinTemps(groupedForecasts[day]); // Ottiene le temperature massima e minima per la data
+                            const forecast = groupedForecasts[day][0]; // Prende la prima previsione del giorno (presumibilmente, quella più rappresentativa)
 
                             return (
                                 <tr key={index} className="border-b last:border-none hover:bg-blue-50 transition-colors">
                                     <td className="px-6 py-2 text-gray-700 font-medium text-center">
-                                        {date} 
+                                        {day} 
                                     </td>
                                     <td className="px-6 py-2 text-blue-600 font-bold text-center">{forecast.main.temp}°C</td>
                                     <td className="px-6 py-2 text-gray-600 font-semibold text-center">{maxTemp}°C</td>

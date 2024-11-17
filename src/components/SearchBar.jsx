@@ -21,11 +21,11 @@ const SearchBar = () => {
                 placeholder="Inserisci città" // Placeholder per indicare all'utente di inserire una città
                 value={city} // Il valore dell'input è sincronizzato con la variabile city
                 onChange={(e) => setCity(e.target.value)} // Aggiorna city ogni volta che l'input cambia
-                className="flex-grow p-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="flex-grow p-1 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <button
                 type="submit"
-                className="p-3 bg-blue-400 text-white font-semibold rounded-lg shadow-md" 
+                className="p-2 bg-blue-400 text-white font-semibold rounded-lg shadow-md" 
             >
                 Cerca
             </button>

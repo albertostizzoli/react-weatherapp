@@ -28,7 +28,7 @@ const WeatherCarousel = () => {
     // Definisce le animazioni per il carosello usando framer-motion
     const carousel = {
         initial: {
-            x: -100, // Inizialmente la slide parte da sinistra (fuori dallo schermo)
+            x: -100, // Inizialmente la slide parte da destra (fuori dallo schermo)
             opacity: 0 // La slide è invisibile all'inizio
         },
         animate: {
@@ -47,7 +47,7 @@ const WeatherCarousel = () => {
                 <div className="flex transition-transform duration-500" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                     {/* Mappa i dati delle previsioni e crea una slide per ogni elemento */}
                     {forecastData.map((forecast, index) => (
-                        <div key={index} className="p-6 bg-gradient-to-r from-blue-100 via-blue-200 to-blue-200 shadow-lg rounded-lg text-center min-w-full">
+                        <div key={index} className="p-4 bg-gradient-to-r from-blue-100 via-blue-200 to-blue-200 shadow-lg rounded-lg text-center min-w-full">
                             <h3 className="text-3xl font-semibold text-gray-800">
                                 {new Date(forecast.dt * 1000).toLocaleString("it-IT", {
                                     weekday: "short", // Giorno della settimana abbreviato
@@ -62,9 +62,9 @@ const WeatherCarousel = () => {
                                     {forecast.weather[0].description}
                                 </p>
                             </div>
-                            <div className="flex flex-col gap-4 text-lg font-medium text-gray-800">
-                                <div><strong>TEMP.MAX:</strong> {forecast.main.temp_max}°C</div>
-                                <div><strong>TEMP.MIN:</strong> {forecast.main.temp_min}°C</div>
+                            <div className="flex flex-col gap-2 text-lg font-medium text-gray-800">
+                                <div><strong>MASSIMA:</strong> {forecast.main.temp_max}°C</div>
+                                <div><strong>MINIMA:</strong> {forecast.main.temp_min}°C</div>
                             </div>
                         </div>
                     ))}

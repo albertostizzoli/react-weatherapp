@@ -28,8 +28,8 @@ const MainApp = () => {
               {forecastData.length > 0 && <WeatherCarousel />}
             </div>
             <div>
+              {forecastData.length > 0 && <ForecastGraph />}
               {forecastData.length > 0 && <ForecastList />}
-              {forecastData.length > 0 && <ForecastGraph/>}
             </div>
           </>
         )}

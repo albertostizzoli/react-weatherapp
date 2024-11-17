@@ -10,7 +10,7 @@ const WeatherDetails = () => {
 
     const card = {
         initial: {
-            x: -100, // Il testo parte da 100px a sinistra
+            x: -100, // Il testo parte da 100px a destra
             opacity: 0 // Il testo parte con opacità 0 (invisibile)
         },
         animate: {
@@ -38,9 +38,9 @@ const WeatherDetails = () => {
                     />
                     <p className="text-2xl capitalize text-gray-700">{weatherData.weather[0].description}</p>
                 </div>
-                <div className="flex flex-col gap-4 text-lg font-medium  text-gray-800">
-                    <div><strong>TEMP.MAX:</strong> {weatherData.main.temp_max}°C</div>
-                    <div><strong>TEMP.MIN:</strong> {weatherData.main.temp_min}°C</div>
+                <div className="flex flex-col gap-2 text-lg font-medium  text-gray-800">
+                    <div><strong>MASSIMA:</strong> {weatherData.main.temp_max}°C</div>
+                    <div><strong>MINIMA:</strong> {weatherData.main.temp_min}°C</div>
                 </div>
             </div>
         </motion.div>

@@ -2,6 +2,7 @@ import React from "react";
 import { Line } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
 import { useWeather } from "../context/WeatherContext";
+import { motion } from "framer-motion";
 
 // Registro i componenti di Chart.js se necessari
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
@@ -67,8 +68,26 @@ const ForecastGraph = () => {
         },
     };
 
+    // Definisco le animazioni per la tabella con framer-motion
+    const graph = {
+        initial: {
+            x: 100, // La tabella inizia fuori dalla vista (a destra)
+            opacity: 0 // La tabella inizia invisibile
+        },
+        animate: {
+            x: 0, // Porta la tabella alla posizione centrale
+            opacity: 1, // Rende la tabella visibile
+            transition: {
+                duration: 1, // Durata della transizione
+                staggerChildren: 0.1 // Staggering per le righe della tabella, animandole in sequenza
+            }
+        }
+    };
+
     return (
-        <Line data={data} options={options} />
+        <motion.div className="h-[320px]" variants={graph} initial="initial" whileInView="animate">
+            <Line data={data} options={options} />
+        </motion.div>
     );
 };
 
