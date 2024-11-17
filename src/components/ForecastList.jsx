@@ -37,7 +37,7 @@ const ForecastList = () => {
     // Definisco le animazioni per la tabella con framer-motion
     const table = {
         initial: {
-            x: 100, // La tabella inizia fuori dalla vista (a destra)
+            x: 100, // La tabella parte da destra
             opacity: 0 // La tabella inizia invisibile
         },
         animate: {
@@ -59,7 +59,7 @@ const ForecastList = () => {
                 <thead>
                     <tr className="text-white bg-gradient-to-r from-blue-500 to-blue-700">
                         <th className="px-6 py-2 text-center font-semibold">Giorno</th>
-                        <th className="px-6 py-2 text-center font-semibold">Temperatura</th>
+                        <th className="px-6 py-2 text-center font-semibold">Temperatura Media</th>
                         <th className="px-6 py-2 text-center font-semibold">Massima</th>
                         <th className="px-6 py-2 text-center font-semibold">Minima</th>
                         <th className="px-6 py-2 text-center font-semibold">Condizioni</th>
@@ -69,8 +69,8 @@ const ForecastList = () => {
                     {/* Itera sui gruppi di previsioni per giorno */}
                     {Object.keys(groupedForecasts).map((day, index) => {
                         if (day !== today) { // Non visualizza le previsioni per oggi
-                            const { maxTemp, minTemp } = getMaxMinTemps(groupedForecasts[day]); // Ottiene le temperature massima e minima per la data
-                            const forecast = groupedForecasts[day][0]; // Prende la prima previsione del giorno (presumibilmente, quella più rappresentativa)
+                            const { maxTemp, minTemp } = getMaxMinTemps(groupedForecasts[day]); // Ottiene le temperature massima e minima per il giorno
+                            const forecast = groupedForecasts[day][0]; // Prende la prima previsione del giorno 
 
                             return (
                                 <tr key={index} className="border-b last:border-none hover:bg-blue-50 transition-colors">
@@ -91,7 +91,7 @@ const ForecastList = () => {
                                 </tr>
                             );
                         }
-                        return null; // Non restituisce nulla se la data è oggi
+                        return null; // Non restituisce nulla se il giorno è oggi
                     })}
                 </tbody>
             </table>

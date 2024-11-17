@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 // Componente WeatherCarousel che mostra le previsioni di ogni 3 ore dal momento della ricerca
 const WeatherCarousel = () => {
-    // Ottiene i dati delle previsioni meteo dal contesto WeatherContext
+    // Ottengo i dati delle previsioni meteo dal contesto WeatherContext
     const { forecastData } = useWeather();
     // Stato per tenere traccia dell'indice della slide corrente
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -25,10 +25,10 @@ const WeatherCarousel = () => {
         );
     };
 
-    // Definisce le animazioni per il carosello usando framer-motion
+    // Definisco le animazioni per il carosello usando framer-motion
     const carousel = {
         initial: {
-            x: -100, // Inizialmente la slide parte da destra (fuori dallo schermo)
+            x: -100, // Inizialmente la slide parte da sinistra (fuori dallo schermo)
             opacity: 0 // La slide è invisibile all'inizio
         },
         animate: {
@@ -42,12 +42,15 @@ const WeatherCarousel = () => {
     };
 
     return (
-        <motion.div className="relative w-full max-w-md mx-auto" variants={carousel} initial="initial" whileInView="animate">
+        <motion.div className="relative w-full max-w-md mx-auto mt-7 text-center" variants={carousel} initial="initial" whileInView="animate">
+            <div className="font-bold w-full p-1 text-white bg-gradient-to-r from-blue-500 to-blue-700 rounded-t-lg shadow-lg">
+                <h4>Previsioni ogni 3 ore</h4>
+            </div>
             <div className="overflow-hidden">
                 <div className="flex transition-transform duration-500" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                     {/* Mappa i dati delle previsioni e crea una slide per ogni elemento */}
                     {forecastData.map((forecast, index) => (
-                        <div key={index} className="p-4 bg-gradient-to-r from-blue-100 via-blue-200 to-blue-200 shadow-lg rounded-lg text-center min-w-full">
+                        <div key={index} className="p-4 bg-gradient-to-l from-blue-100 via-blue-200 to-blue-200 shadow-lg rounded-lg text-center min-w-full">
                             <h3 className="text-3xl font-semibold text-gray-800">
                                 {new Date(forecast.dt * 1000).toLocaleString("it-IT", {
                                     weekday: "short", // Giorno della settimana abbreviato

@@ -18,7 +18,7 @@ const ForecastGraph = () => {
     const humidityData = forecastData.map((data) => data.main.humidity);
     const windData = forecastData.map((data) => data.wind.speed);
 
-    // Creo un array di etichette temporali convertendo il timestamp di ogni previsione in un orario leggibile
+    // Creo un array di etichette temporali in base all'ora prevista
     const labels = forecastData.map((data) =>
         new Date(data.dt * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     );
@@ -71,7 +71,7 @@ const ForecastGraph = () => {
     // Definisco le animazioni per la tabella con framer-motion
     const graph = {
         initial: {
-            x: 100, // La tabella inizia fuori dalla vista (a destra)
+            x: 100, // La tabella parte da destra
             opacity: 0 // La tabella inizia invisibile
         },
         animate: {
