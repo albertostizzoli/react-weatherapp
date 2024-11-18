@@ -36,7 +36,7 @@ const WeatherCarousel = () => {
             opacity: 1, // Rende la slide visibile
             transition: {
                 duration: 1, // Durata della transizione
-                staggerChildren: 0.1 // Distanzia le animazioni dei figli (slide) per un effetto fluido
+                staggerChildren: 0.1 // Ritardo dell'animazione
             }
         }
     };

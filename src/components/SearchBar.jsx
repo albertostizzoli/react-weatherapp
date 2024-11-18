@@ -23,12 +23,7 @@ const SearchBar = () => {
                 onChange={(e) => setCity(e.target.value)} // Aggiorna city ogni volta che l'input cambia
                 className="flex-grow p-1 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <button
-                type="submit"
-                className="p-2 bg-blue-400 text-white font-semibold rounded-lg shadow-md" 
-            >
-                Cerca
-            </button>
+            <button type="submit" className="p-2 bg-blue-400 text-white font-semibold rounded-lg shadow-md">Cerca</button>
         </form>
     );
 };

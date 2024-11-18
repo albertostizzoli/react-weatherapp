@@ -45,7 +45,7 @@ const ForecastList = () => {
             opacity: 1, // Rende la tabella visibile
             transition: {
                 duration: 1, // Durata della transizione
-                staggerChildren: 0.1 // Staggering per le righe della tabella, animandole in sequenza
+                staggerChildren: 0.1 // Ritardo dell'animazione
             }
         }
     };
@@ -91,7 +91,7 @@ const ForecastList = () => {
                                 </tr>
                             );
                         }
-                        return null; // Non restituisce nulla se il giorno è oggi
+                        return null; // Non restituisce nulla se il giorno è quello attuale
                     })}
                 </tbody>
             </table>

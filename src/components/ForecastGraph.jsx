@@ -9,7 +9,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 
 // Componente ForecastGraph che mostra i dati delle previsioni sotto forma di grafico
 const ForecastGraph = () => {
-    const { forecastData } = useWeather();
+    const { forecastData } = useWeather(); // Ottiene i dati delle previsioni meteo dal contesto
 
     // Controllo che forecastData contenga dati prima di renderizzare il grafico
     if (!forecastData || forecastData.length === 0) return null;
@@ -23,7 +23,7 @@ const ForecastGraph = () => {
         new Date(data.dt * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     );
 
-    // Definisco i dati e le opzioni del grafico da Chart.js
+    // Definisco i dati e le opzioni del grafico con Chart.js
     const data = {
         labels: labels, // Array delle etichette temporali per l'asse X
         datasets: [
@@ -116,18 +116,18 @@ const ForecastGraph = () => {
     };
 
 
-    // Definisco le animazioni per la tabella con framer-motion
+    // Definisco le animazioni per il grafico con framer-motion
     const graph = {
         initial: {
-            x: 100, // La tabella parte da destra
-            opacity: 0 // La tabella inizia invisibile
+            x: 100, // Il grafico parte da destra
+            opacity: 0 // Il grafico inizia invisibile
         },
         animate: {
-            x: 0, // Porta la tabella alla posizione centrale
-            opacity: 1, // Rende la tabella visibile
+            x: 0, // Porta il grafico alla posizione centrale
+            opacity: 1, // Rende il grafico visibile
             transition: {
                 duration: 1, // Durata della transizione
-                staggerChildren: 0.1 // Staggering per le righe della tabella, animandole in sequenza
+                staggerChildren: 0.1 // Ritardo dell'animazione
             }
         }
     };
