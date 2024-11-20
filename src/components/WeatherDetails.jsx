@@ -8,17 +8,18 @@ const WeatherDetails = () => {
     // Recupero weatherData dal contesto tramite il hook useWeather
     const { weatherData } = useWeather();
 
+    // Definisco le animazioni per la card usando framer-motion
     const card = {
         initial: {
-            x: -100, // La card parte da 100px a sinistra
-            opacity: 0 // La card parte con opacità 0 (invisibile)
+            rotateX: 180, // Ruota la card di 180 gradi sull'asse X
+            opacity: 0  // La card è invisibile
         },
         animate: {
-            x: 0, // La card si sposta nella posizione originale
-            opacity: 1, // La card diventa completamente visibile
+            rotateX: 0, // Riporta la card alla posizione iniziale
+            opacity: 1, // Rende la card visibile
             transition: {
-                duration: 1, // Durata dell'animazione in secondi
-                staggerChildren: 0.1 // Ritardo dell'animazione
+                duration: 1, // Durata della transizione
+                ease: 'easeInOut' // Easing per animazione
             }
         }
     };

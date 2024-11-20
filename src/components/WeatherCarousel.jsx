@@ -28,15 +28,15 @@ const WeatherCarousel = () => {
     // Definisco le animazioni per il carosello usando framer-motion
     const carousel = {
         initial: {
-            x: -100, // Inizialmente la slide parte da sinistra (fuori dallo schermo)
-            opacity: 0 // La slide è invisibile all'inizio
+            rotateY: 180, // Ruota il carosello di 180 gradi sull'asse Y
+            opacity: 0  // Il carosello è invisibile
         },
         animate: {
-            x: 0, // Posiziona la slide al centro (visibile)
-            opacity: 1, // Rende la slide visibile
+            rotateY: 0, // Riporta il carosello alla posizione iniziale
+            opacity: 1, // Rende il carosello visibile
             transition: {
                 duration: 1, // Durata della transizione
-                staggerChildren: 0.1 // Ritardo dell'animazione
+                ease: 'easeInOut' // Easing per animazione
             }
         }
     };

@@ -37,15 +37,15 @@ const ForecastList = () => {
     // Definisco le animazioni per la tabella con framer-motion
     const table = {
         initial: {
-            x: 100, // La tabella parte da destra
+            rotateY: 180, // Ruota la tabella di 180 gradi sull'asse Y
             opacity: 0 // La tabella inizia invisibile
         },
         animate: {
-            x: 0, // Porta la tabella alla posizione centrale
+            rotateY: 0, // Porta la tabella alla posizione centrale
             opacity: 1, // Rende la tabella visibile
             transition: {
                 duration: 1, // Durata della transizione
-                staggerChildren: 0.1 // Ritardo dell'animazione
+                ease: 'easeInOut' // Easing per animazione
             }
         }
     };

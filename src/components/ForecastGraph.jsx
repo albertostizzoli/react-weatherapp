@@ -119,21 +119,21 @@ const ForecastGraph = () => {
     // Definisco le animazioni per il grafico con framer-motion
     const graph = {
         initial: {
-            x: 100, // Il grafico parte da destra
+            rotateX: 180, // Ruota il grafico di 180 gradi sull'asse X
             opacity: 0 // Il grafico inizia invisibile
         },
         animate: {
-            x: 0, // Porta il grafico alla posizione centrale
+            rotateX: 0, // Porta il grafico alla posizione centrale
             opacity: 1, // Rende il grafico visibile
             transition: {
                 duration: 1, // Durata della transizione
-                staggerChildren: 0.1 // Ritardo dell'animazione
+                ease: 'easeInOut' // Easing per animazione
             }
         }
     };
 
     return (
-        <motion.div className="h-[320px]" variants={graph} initial="initial" whileInView="animate">
+        <motion.div className="h-[320px] mt-2 pt-2" variants={graph} initial="initial" whileInView="animate">
             <Line data={data} options={options} />
         </motion.div>
     );
