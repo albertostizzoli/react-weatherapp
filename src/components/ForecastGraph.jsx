@@ -30,8 +30,8 @@ const ForecastGraph = () => {
             {
                 label: 'Umidità (%)', // Etichetta per il dataset dell'umidità
                 data: humidityData, // Dati di umidità presi da forecastData
-                borderColor: 'rgba(54, 162, 235, 1)', // Colore blu della linea del grafico
-                backgroundColor: 'rgba(54, 162, 235, 0.2)', // Colore di sfondo semi-trasparente
+                borderColor: 'rgba(38, 120, 230, 1)', // Colore blu della linea del grafico
+                backgroundColor: 'rgba(38, 120, 230, 0.1)', // Colore di sfondo semi-trasparente
                 pointBackgroundColor: 'rgba(54, 162, 235, 1)', // Colore del punto dati
                 pointBorderColor: '#fff', // Colore del bordo intorno ai punti
                 pointBorderWidth: 2, // Spessore del bordo dei punti
@@ -44,8 +44,8 @@ const ForecastGraph = () => {
             {
                 label: 'Vento (m/s)', // Etichetta per il dataset del vento
                 data: windData, // Dati del vento presi da forecastData
-                borderColor: 'rgba(255, 99, 132, 1)', // Colore rosso della linea del grafico
-                backgroundColor: 'rgba(255, 99, 132, 0.2)', // Colore di sfondo semi-trasparente
+                borderColor: 'rgba(255, 64, 64, 1)', // Colore rosso della linea del grafico
+                backgroundColor: 'rgba(255, 64, 64, 0.1)', // Colore di sfondo semi-trasparente
                 pointBackgroundColor: 'rgba(255, 99, 132, 1)', // Colore dei punti dati
                 pointBorderColor: '#fff', // Colore del bordo intorno ai punti
                 pointBorderWidth: 2, // Spessore del bordo dei punti
@@ -60,16 +60,19 @@ const ForecastGraph = () => {
 
     // Configuro le opzioni del grafico per personalizzare il layout e la legenda
     const options = {
-        responsive: true, // Rende il grafico responsivo alle dimensioni del contenitore
+        responsive: true, // Rende il grafico responsivo alle dimensioni del contenitore        
         plugins: {
             legend: {
                 display: true, // Mostra la legenda
-                position: 'top', // Posiziona la legenda del grafico in alto
+                position: 'right', // Posiziona la legenda del grafico a destra
                 labels: {
                     color: '#333', // Colore del testo nella legenda
                     font: {
                         size: 14, // Dimensione del font nella legenda
                     },
+                    usePointStyle: true, // Usa punti invece delle linee
+                    padding: 20, // Spaziatura per leggibilità
+                    boxWidth: 10, // Riduci le dimensioni del simbolo
                 },
             },
             tooltip: {
@@ -83,13 +86,10 @@ const ForecastGraph = () => {
         },
         scales: {
             y: {
-                title: {
-                    display: true, // Mostra il titolo dell'asse Y
-                    text: 'Valori', // Testo del titolo sull'asse Y
-                },
                 grid: {
-                    color: 'rgba(200, 200, 200, 0.3)', // Colore della griglia dell'asse Y
-                    lineWidth: 1, // Spessore delle linee della griglia dell'asse Y
+                    color: 'rgba(200, 200, 200, 0.5)', // Colore della griglia dell'asse Y
+                    lineWidth: 0.5, // Spessore delle linee della griglia dell'asse Y
+                    borderDash: [5, 5] // Linee tratteggiate
                 },
                 ticks: {
                     color: '#333', // Colore delle etichette dei valori sull'asse Y
@@ -100,18 +100,18 @@ const ForecastGraph = () => {
                 },
             },
             x: {
-                title: {
-                    display: true, // Mostra il titolo dell'asse X
-                    text: 'Ora', // Testo del titolo sull'asse X
-                },
                 grid: {
                     display: false, // Rimuove la griglia orizzontale
-                }
+                },
+                ticks: {
+                    maxRotation: 45, // Inclina le etichette
+                    color: '#444', // Colore più leggibile
+                },
             },
         },
         animation: {
-            duration: 1500, // Rallenta l'animazione a 1.5 secondi
-            easing: 'easeInOutBounce', // Easing per animazione 
+            duration: 1200, // Rallenta l'animazione a 1.2 secondi
+            easing: 'easeInOutQuart', // Easing per animazione 
         }
     };
 
