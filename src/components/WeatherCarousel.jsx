@@ -35,7 +35,7 @@ const WeatherCarousel = () => {
             rotateY: 0, // Riporta il carosello alla posizione iniziale
             opacity: 1, // Rende il carosello visibile
             transition: {
-                duration: 1, // Durata della transizione
+                duration: 2, // Durata della transizione
                 ease: 'easeInOut' // Easing per animazione
             }
         }
@@ -51,7 +51,7 @@ const WeatherCarousel = () => {
             {/* Header */}
             <div className="w-full p-1 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-t-lg shadow-lg">
                 <h4 className="text-lg font-semibold flex items-center justify-center">
-                    <span role="img" aria-label="Icona calendario">📅</span>Previsioni ogni 3 ore
+                <span role="img" aria-label="Icona orologio">⏰</span> Previsioni ogni 3 ore
                 </h4>
             </div>
 

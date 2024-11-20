@@ -110,7 +110,7 @@ const ForecastGraph = () => {
             },
         },
         animation: {
-            duration: 1200, // Rallenta l'animazione a 1.2 secondi
+            duration: 4000, // Rallenta l'animazione a 1.2 secondi
             easing: 'easeInOutQuart', // Easing per animazione 
         }
     };
@@ -126,7 +126,7 @@ const ForecastGraph = () => {
             rotateX: 0, // Porta il grafico alla posizione centrale
             opacity: 1, // Rende il grafico visibile
             transition: {
-                duration: 1, // Durata della transizione
+                duration: 2.5, // Durata della transizione
                 ease: 'easeInOut' // Easing per animazione
             }
         }

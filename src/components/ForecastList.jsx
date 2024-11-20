@@ -44,7 +44,7 @@ const ForecastList = () => {
             rotateY: 0, // Porta la tabella alla posizione centrale
             opacity: 1, // Rende la tabella visibile
             transition: {
-                duration: 1, // Durata della transizione
+                duration: 1.5, // Durata della transizione
                 ease: 'easeInOut' // Easing per animazione
             }
         }
