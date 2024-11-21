@@ -110,7 +110,7 @@ const ForecastGraph = () => {
             },
         },
         animation: {
-            duration: 4000, // Rallenta l'animazione a 1.2 secondi
+            duration: 4000, // Rallenta l'animazione a 4 secondi
             easing: 'easeInOutQuart', // Easing per animazione 
         }
     };
