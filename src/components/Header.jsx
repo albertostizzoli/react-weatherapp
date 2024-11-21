@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import SearchBar from "./SearchBar";
-import { useWeather } from "../context/WeatherContext";
+import { useWeather } from "../context/WeatherContext"; 
 
 const Header = () => {
-    const [isSidebarOpen, setSidebarOpen] = useState(false); // Imposto lo useState per aprire e chiudere la sidebar
-    const [savedCities, setSavedCities] = useState([]); // Imposto lo useState per memorizzare le città salvate
+    const [isSidebarOpen, setSidebarOpen] = useState(false); // Stato per aprire/chiudere la sidebar
+    const [savedCities, setSavedCities] = useState([]); // Stato per memorizzare le città salvate
     const { city } = useWeather(); // Ottiene la città attualmente cercata dal contesto
 
     // Funzione per aprire e chiudere la Sidebar
@@ -13,11 +13,28 @@ const Header = () => {
         setSidebarOpen(!isSidebarOpen);
     };
 
+    // Carica le città salvate da localStorage quando il componente viene montato
+    useEffect(() => {
+        const storedCities = JSON.parse(localStorage.getItem("savedCities")) || [];
+        setSavedCities(storedCities);
+    }, []);
+
+    // Salva le città attuali in localStorage ogni volta che savedCities cambia
+    useEffect(() => {
+        localStorage.setItem("savedCities", JSON.stringify(savedCities));
+    }, [savedCities]);
+
     // Funzione per aggiungere la città cercata all'elenco delle città salvate
     const handleSaveCity = () => {
         if (city && !savedCities.includes(city)) { // Salva solo se la città è valida e non è già salvata
             setSavedCities([...savedCities, city]);
         }
+    };
+
+    // Funzione per rimuovere una città dall'elenco
+    const handleRemoveCity = (cityToRemove) => {
+        const updatedCities = savedCities.filter(savedCity => savedCity !== cityToRemove);
+        setSavedCities(updatedCities);
     };
 
     return (
@@ -44,29 +61,39 @@ const Header = () => {
                         <button onClick={toggleSidebar} className="text-white text-3xl font-bold">&times;</button>
                     </div>
 
-                    {/* SearchBar */}
+                    {/* Componente SearchBar */}
                     <SearchBar />
 
                     {/* Icone */}
                     <div className="flex justify-around items-center mt-4">
+                        {/* Bottone per salvare la città */}
                         <button
                             className="text-white text-3xl font-bold"
                             onClick={handleSaveCity} // Salva la città cercata
                         >
                             <i className="fa-solid fa-plus"></i>
                         </button>
+
+                        {/* Icona per la geolocalizzazione */}
                         <button className="text-white text-3xl font-bold">
                             <i className="fas fa-map-marker-alt"></i>
                         </button>
                     </div>
 
-                    {/* Elenco delle città salvate */}
+                    {/* Elenco delle città salvate con opzione di rimozione */}
                     <div className="mt-6 text-white">
                         <h2 className="text-lg font-semibold">Città salvate</h2>
                         <ul className="mt-2 space-y-1">
                             {savedCities.map((savedCity, index) => (
-                                <li key={index} className="p-2 bg-blue-700 rounded">
+                                <li key={index} className="p-2 bg-blue-700 rounded flex justify-between items-center">
                                     {savedCity}
+                                    <button
+                                        className="text-red-500 ml-2"
+                                        onClick={() => handleRemoveCity(savedCity)}
+                                        aria-label={`Rimuovi ${savedCity}`}
+                                    >
+                                        ✕
+                                    </button>
                                 </li>
                             ))}
                         </ul>
@@ -78,3 +105,4 @@ const Header = () => {
 };
 
 export default Header;
+
