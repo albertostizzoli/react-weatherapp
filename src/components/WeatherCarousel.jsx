@@ -49,7 +49,7 @@ const WeatherCarousel = () => {
             whileInView="animate"
         >
             {/* Header */}
-            <div className="w-full p-1 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-t-lg shadow-lg">
+            <div className="w-full px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-t-lg shadow-lg">
                 <h4 className="text-lg font-semibold flex items-center justify-center">
                 <span role="img" aria-label="Icona orologio">⏰</span> Previsioni ogni 3 ore
                 </h4>
