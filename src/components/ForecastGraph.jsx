@@ -37,7 +37,6 @@ const ForecastGraph = () => {
                 pointBorderWidth: 2, // Spessore del bordo dei punti
                 borderWidth: 3, // Spessore della linea del grafico
                 tension: 0.4, // Curvatura della linea per renderla più morbida
-                fill: true, // Riempi l'area sotto la linea con il colore di sfondo
                 pointRadius: 4, // Dimensione dei punti
                 pointHoverRadius: 6, // Ingrandisce i punti al passaggio del mouse
             },
@@ -51,7 +50,6 @@ const ForecastGraph = () => {
                 pointBorderWidth: 2, // Spessore del bordo dei punti
                 borderWidth: 3, // Spessore della linea del grafico
                 tension: 0.4, // Curvatura della linea per renderla più morbida
-                fill: true, // Riempi l'area sotto la linea con il colore di sfondo
                 pointRadius: 4, // Dimensione dei punti
                 pointHoverRadius: 6, // Ingrandisce i punti al passaggio del mouse
             },
