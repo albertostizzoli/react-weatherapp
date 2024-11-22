@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
 import { useWeather } from "../context/WeatherContext";
@@ -10,6 +11,19 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 // Componente ForecastGraph che mostra i dati delle previsioni sotto forma di grafico
 const ForecastGraph = () => {
     const { forecastData } = useWeather(); // Ottiene i dati delle previsioni meteo dal contesto
+    const [legendPosition, setLegendPosition] = useState('right'); // Stato per la posizione della legenda
+
+    // Effetto per aggiornare la posizione della legenda in base alla larghezza dello schermo
+    useEffect(() => {
+        const updateLegendPosition = () => {
+            setLegendPosition(window.innerWidth <= 576 ? 'bottom' : 'right');
+        };
+
+        updateLegendPosition(); // Imposta la posizione iniziale
+        window.addEventListener('resize', updateLegendPosition); // Aggiorna la posizione al ridimensionamento
+
+        return () => window.removeEventListener('resize', updateLegendPosition);
+    }, []);
 
     // Controllo che forecastData contenga dati prima di renderizzare il grafico
     if (!forecastData || forecastData.length === 0) return null;
@@ -62,7 +76,7 @@ const ForecastGraph = () => {
         plugins: {
             legend: {
                 display: true, // Mostra la legenda
-                position: 'right', // Posiziona la legenda del grafico a destra
+                position: legendPosition, // Posiziona la legenda in base al Responsive
                 labels: {
                     color: '#333', // Colore del testo nella legenda
                     font: {
