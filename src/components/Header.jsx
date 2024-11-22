@@ -62,7 +62,7 @@ const Header = () => {
                     animate={{ x: 0 }} // Animazione per entrare sullo schermo
                     exit={{ x: "100%" }} // Esce dallo schermo a destra
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    className="fixed right-0 top-0 h-full w-[300px] bg-gradient-to-r from-blue-600 to-blue-800 shadow-lg p-4 flex flex-col space-y-4 z-50"
+                    className="fixed right-0 top-0 h-full w-[330px] bg-gradient-to-r from-blue-600 to-blue-800 shadow-lg p-4 flex flex-col space-y-4 z-50"
                 >
                     <div className="flex justify-end">
                         <button onClick={toggleSidebar} className="text-white text-3xl font-bold">&times;</button>
@@ -94,8 +94,8 @@ const Header = () => {
                             {savedCities.map((savedCity, index) => (
                                 <li key={index} className="p-2 text-white bg-blue-700 rounded flex justify-between items-center">
                                     {savedCity}
-                                    <i className="fa-solid fa-trash" onClick={() => handleRemoveCity(savedCity)} aria-label={`Rimuovi ${savedCity}`}>
-                                    </i>
+                                    <button><i className="fa-solid fa-trash" onClick={() => handleRemoveCity(savedCity)} aria-label={`Rimuovi ${savedCity}`}>
+                                    </i></button>
                                 </li>
                             ))}
                         </ul>
