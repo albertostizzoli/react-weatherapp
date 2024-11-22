@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import SearchBar from "./SearchBar";
-import { useWeather } from "../context/WeatherContext"; 
+import { useWeather } from "../context/WeatherContext";
 
 const Header = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false); // Stato per aprire/chiudere la sidebar
@@ -16,17 +16,24 @@ const Header = () => {
     // Carica le città salvate da localStorage quando il componente viene montato
     useEffect(() => {
         const storedCities = JSON.parse(localStorage.getItem("savedCities")) || [];
+        console.log("Città salvate caricate da localStorage al caricamento:", storedCities); // Questo dovrebbe mostrare ["Verona"]
         setSavedCities(storedCities);
+        console.log("Stato savedCities aggiornato:", savedCities); // Verifica se savedCities viene impostato correttamente
     }, []);
+
 
     // Salva le città attuali in localStorage ogni volta che savedCities cambia
     useEffect(() => {
-        localStorage.setItem("savedCities", JSON.stringify(savedCities));
+        if (savedCities.length) { // Aggiorna solo se ci sono città salvate
+            localStorage.setItem("savedCities", JSON.stringify(savedCities));
+        }
     }, [savedCities]);
+
 
     // Funzione per aggiungere la città cercata all'elenco delle città salvate
     const handleSaveCity = () => {
         if (city && !savedCities.includes(city)) { // Salva solo se la città è valida e non è già salvata
+            console.log(city);
             setSavedCities([...savedCities, city]);
         }
     };
@@ -85,18 +92,14 @@ const Header = () => {
                         <h2 className="text-lg font-semibold">Città salvate</h2>
                         <ul className="mt-2 space-y-1">
                             {savedCities.map((savedCity, index) => (
-                                <li key={index} className="p-2 bg-blue-700 rounded flex justify-between items-center">
+                                <li key={index} className="p-2 text-white bg-blue-700 rounded flex justify-between items-center">
                                     {savedCity}
-                                    <button
-                                        className="text-red-500 ml-2"
-                                        onClick={() => handleRemoveCity(savedCity)}
-                                        aria-label={`Rimuovi ${savedCity}`}
-                                    >
-                                        ✕
-                                    </button>
+                                    <i className="fa-solid fa-trash" onClick={() => handleRemoveCity(savedCity)} aria-label={`Rimuovi ${savedCity}`}>
+                                    </i>
                                 </li>
                             ))}
                         </ul>
+
                     </div>
                 </motion.div>
             )}
