@@ -10,7 +10,7 @@ const SearchBar = () => {
     // Funzione di gestione della ricerca. Previene il comportamento predefinito del form e chiama fetchWeatherData
     const handleSearch = (e) => {
         e.preventDefault(); // Evita il ricaricamento della pagina
-        fetchWeatherData(); // Richiama la funzione per ottenere i dati meteo della città
+        fetchWeatherData(city); // Richiama la funzione per ottenere i dati meteo della città
     };
 
     return (

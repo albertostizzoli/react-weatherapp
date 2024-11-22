@@ -21,18 +21,24 @@ export const WeatherProvider = ({ children }) => {
 
 
     // Funzione per recuperare i dati meteo attuali della città inserita
-    const fetchWeatherData = async () => {
-        setLoading(true); // Imposta lo stato di caricamento su true
+    const fetchWeatherData = async (cityName = city) => {
+        const nameToFetch = cityName || city;
+    
+        if (!nameToFetch) {
+            console.error("La città è vuota o non valida.");
+            setError("Inserisci una città valida.");
+            return;
+        }
+    
+        setLoading(true);
         try {
-            // con Axios richiedo i dati meteo attuali
             const response = await axios.get(
-                `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=it`
+                `https://api.openweathermap.org/data/2.5/weather?q=${nameToFetch}&appid=${API_KEY}&units=metric&lang=it`
             );
-            setWeatherData(response.data); // Memorizza i dati meteo attuali nello stato
-
-            setError(null); // Resetta l'errore se il recupero è andato a buon fine
-
-            // Recupera le previsioni meteo in base alle coordinate fornite dalla risposta
+            setWeatherData(response.data);
+            setError(null);
+    
+            // Recupera le previsioni meteo in base alle coordinate
             fetchForecastData(response.data.coord.lat, response.data.coord.lon);
         } catch (error) {
             setError("Città non trovata. Prova di nuovo.");
@@ -41,6 +47,7 @@ export const WeatherProvider = ({ children }) => {
         }
         setLoading(false);
     };
+    
 
     // Funzione per recuperare le previsioni meteo a più giorni in base a latitudine e longitudine
     const fetchForecastData = async (lat, lon) => {
