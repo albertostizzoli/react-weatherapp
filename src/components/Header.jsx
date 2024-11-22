@@ -13,10 +13,10 @@ const Header = () => {
         setSidebarOpen(!isSidebarOpen);
     };
 
-    // Carica le città salvate da localStorage quando il componente viene montato
+    // Carica le città salvate da localStorage quando la pagina viene ricaricata
     useEffect(() => {
         const storedCities = JSON.parse(localStorage.getItem("savedCities")) || [];
-        console.log("Città salvate caricate da localStorage al caricamento:", storedCities); // Questo dovrebbe mostrare ["Verona"]
+        console.log("Città salvate caricate da localStorage al caricamento:", storedCities); // Questo dovrebbe mostrare ["Cittàsalvata"]
         setSavedCities(storedCities);
         console.log("Stato savedCities aggiornato:", savedCities); // Verifica se savedCities viene impostato correttamente
     }, []);
@@ -50,9 +50,10 @@ const Header = () => {
                 <span role="img" aria-label="rain-cloud">🌧️</span> Weather App
             </h1>
 
-            {/* Bottone per aprire/chiudere la Sidebar */}
-            <button onClick={toggleSidebar} className="text-white text-3xl font-bold p-2">
-                ☰
+            {/* Bottone per aprire la Sidebar */}
+            <button
+                onClick={toggleSidebar}
+                className="text-white text-3xl font-bold p-2"><i class="fa-solid fa-bars"></i>
             </button>
 
             {/* Sidebar animata */}
@@ -62,10 +63,13 @@ const Header = () => {
                     animate={{ x: 0 }} // Animazione per entrare sullo schermo
                     exit={{ x: "100%" }} // Esce dallo schermo a destra
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    className="fixed right-0 top-0 h-full w-[330px] bg-gradient-to-r from-blue-600 to-blue-800 shadow-lg p-4 flex flex-col space-y-4 z-50"
-                >
+                    className="fixed right-0 top-0 h-full w-[390px] bg-gradient-to-r from-blue-600 to-blue-800 shadow-lg p-4 flex flex-col space-y-4 z-50">
+                    {/* Bottone per chiudere la Sidebar */}
                     <div className="flex justify-end">
-                        <button onClick={toggleSidebar} className="text-white text-3xl font-bold">&times;</button>
+                        <button
+                            onClick={toggleSidebar}
+                            className="text-white text-3xl font-bold"><i className="fa-solid fa-xmark"></i>
+                        </button>
                     </div>
 
                     {/* Componente SearchBar */}
@@ -75,10 +79,8 @@ const Header = () => {
                     <div className="flex justify-around items-center mt-4">
                         {/* Bottone per salvare la città */}
                         <button
-                            className="text-white text-3xl font-bold"
                             onClick={handleSaveCity} // Salva la città cercata
-                        >
-                            <i className="fa-solid fa-plus"></i>
+                            className="text-white text-3xl font-bold"><i className="fa-solid fa-plus"></i>
                         </button>
 
                         {/* Icona per la geolocalizzazione */}
@@ -94,8 +96,12 @@ const Header = () => {
                             {savedCities.map((savedCity, index) => (
                                 <li key={index} className="p-2 text-white bg-blue-700 rounded flex justify-between items-center">
                                     {savedCity}
-                                    <button><i className="fa-solid fa-trash" onClick={() => handleRemoveCity(savedCity)} aria-label={`Rimuovi ${savedCity}`}>
-                                    </i></button>
+                                    <button>
+                                        <i className="fa-solid fa-trash"
+                                            onClick={() => handleRemoveCity(savedCity)}
+                                            aria-label={`Rimuovi ${savedCity}`}>
+                                        </i>
+                                    </button>
                                 </li>
                             ))}
                         </ul>

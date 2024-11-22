@@ -35,13 +35,13 @@ const MainApp = () => {
       ) : (
         <>
           <Header />
-          <div className="flex-grow flex flex-row items-center justify-evenly w-full">
+          <div className="flex-grow flex flex-col sm:flex-row items-center justify-evenly w-full">
             {error && <p className="text-red-500 mt-4">{error}</p>}
-            <div>
+            <div className="w-full sm:w-auto">
               {weatherData && <WeatherDetails />}
               {forecastData.length > 0 && <WeatherCarousel />}
             </div>
-            <div>
+            <div className="w-full sm:w-auto">
               {forecastData.length > 0 && <ForecastList />}
               {forecastData.length > 0 && <ForecastGraph />}
             </div>
@@ -50,6 +50,7 @@ const MainApp = () => {
       )}
     </div>
   );
+  
 
 };
 

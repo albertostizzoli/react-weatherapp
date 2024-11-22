@@ -55,88 +55,87 @@ const ForecastList = () => {
 
     return (
         <motion.div className="mt-2" variants={table} initial="initial" whileInView="animate">
-            <table className="min-w-full bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
-                {/* Intestazione */}
-                <thead>
-                    <tr className="text-white bg-gradient-to-r from-blue-600 to-blue-800">
-                        <th className="px-6 py-2 text-center font-semibold">
-                            <div className="flex items-center justify-center space-x-2 whitespace-nowrap">
-                                <span>Giorno</span>
-                                <span className="text-lg" role="img" aria-label="Icona calendario">📅</span>
-                            </div>
-                        </th>
-                        <th className="px-6 py-2 text-center font-semibold">
-                            <div className="flex items-center justify-center space-x-2 whitespace-nowrap">
-                                <span>Temperatura Media</span>
-                                <span className="text-lg" role="img" aria-label="Icona termometro">🌡️</span>
-                            </div>
-                        </th>
-                        <th className="px-6 py-2 text-center font-semibold">
-                            <div className="flex items-center justify-center space-x-2 whitespace-nowrap">
-                                <span>Massima</span>
-                                <span className="text-lg" role="img" aria-label="Icona freccia su">⬆️</span>
-                            </div>
-                        </th>
-                        <th className="px-6 py-2 text-center font-semibold">
-                            <div className="flex items-center justify-center space-x-2 whitespace-nowrap">
-                                <span>Minima</span>
-                                <span className="text-lg" role="img" aria-label="Icona freccia giù">⬇️</span>
-                            </div>
-                        </th>
-                        <th className="px-6 py-2 text-center font-semibold">
-                            <div className="flex items-center justify-center space-x-2 whitespace-nowrap">
-                                <span>Condizioni</span>
-                                <span className="text-lg" role="img" aria-label="Icona nuvola">☁️</span>
-                            </div>
-                        </th>
-                    </tr>
-                </thead>
-
-
-                {/* Corpo della tabella */}
-                <tbody>
-                    {Object.keys(groupedForecasts).map((day, index) => {
-                        if (day !== today) {
-                            const { maxTemp, minTemp } = getMaxMinTemps(groupedForecasts[day]);
-                            const forecast = groupedForecasts[day][0];
-
-                            return (
-                                <tr
-                                    key={index}
-                                    className={`border-b last:border-none hover:bg-blue-50 transition-colors ${index % 2 === 0 ? "bg-gray-50" : "bg-white"
-                                        }`}
-                                >
-                                    <td className="px-6 py-2 text-gray-700 font-medium text-center">
-                                        {day}
-                                    </td>
-                                    <td className="px-6 py-2 text-blue-600 font-bold text-center">
-                                        {forecast.main.temp}°C
-                                    </td>
-                                    <td className="px-6 py-2 text-gray-600 font-semibold text-center">
-                                        {maxTemp}°C
-                                    </td>
-                                    <td className="px-6 py-2 text-gray-600 font-semibold text-center">
-                                        {minTemp}°C
-                                    </td>
-                                    <td className="px-6 py-2 flex items-center justify-center text-gray-600 font-semibold space-x-2">
-                                        <img
-                                            src={`https://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`}
-                                            alt={`Icona meteo: ${forecast.weather[0].description}`}
-                                            className="w-8 h-8"
-                                        />
-                                        <span className="capitalize">{forecast.weather[0].description}</span>
-                                    </td>
-                                </tr>
-                            );
-                        }
-                        return null;
-                    })}
-                </tbody>
-            </table>
+            <div className="overflow-x-auto">
+                <table className="min-w-full bg-white rounded-lg shadow-md overflow-hidden border border-gray-200">
+                    {/* Intestazione */}
+                    <thead>
+                        <tr className="text-white bg-gradient-to-r from-blue-600 to-blue-800">
+                            <th className="px-4 py-2 text-center font-semibold text-sm sm:text-base">
+                                <div className="flex items-center justify-center space-x-2 whitespace-nowrap">
+                                    <span>Giorno</span>
+                                    <span className="text-lg" role="img" aria-label="Icona calendario">📅</span>
+                                </div>
+                            </th>
+                            <th className="px-4 py-2 text-center font-semibold text-sm sm:text-base">
+                                <div className="flex items-center justify-center space-x-2 whitespace-nowrap">
+                                    <span>Temperatura Media</span>
+                                    <span className="text-lg" role="img" aria-label="Icona termometro">🌡️</span>
+                                </div>
+                            </th>
+                            <th className="px-4 py-2 text-center font-semibold text-sm sm:text-base">
+                                <div className="flex items-center justify-center space-x-2 whitespace-nowrap">
+                                    <span>Massima</span>
+                                    <span className="text-lg" role="img" aria-label="Icona freccia su">⬆️</span>
+                                </div>
+                            </th>
+                            <th className="px-4 py-2 text-center font-semibold text-sm sm:text-base">
+                                <div className="flex items-center justify-center space-x-2 whitespace-nowrap">
+                                    <span>Minima</span>
+                                    <span className="text-lg" role="img" aria-label="Icona freccia giù">⬇️</span>
+                                </div>
+                            </th>
+                            <th className="px-4 py-2 text-center font-semibold text-sm sm:text-base">
+                                <div className="flex items-center justify-center space-x-2 whitespace-nowrap">
+                                    <span>Condizioni</span>
+                                    <span className="text-lg" role="img" aria-label="Icona nuvola">☁️</span>
+                                </div>
+                            </th>
+                        </tr>
+                    </thead>
+    
+                    {/* Corpo della tabella */}
+                    <tbody>
+                        {Object.keys(groupedForecasts).map((day, index) => {
+                            if (day !== today) {
+                                const { maxTemp, minTemp } = getMaxMinTemps(groupedForecasts[day]);
+                                const forecast = groupedForecasts[day][0];
+    
+                                return (
+                                    <tr
+                                        key={index}
+                                        className={`border-b last:border-none hover:bg-blue-50 transition-colors ${index % 2 === 0 ? "bg-gray-50" : "bg-white"}`}
+                                    >
+                                        <td className="px-4 py-2 text-gray-700 font-medium text-center text-sm sm:text-base">
+                                            {day}
+                                        </td>
+                                        <td className="px-4 py-2 text-blue-600 font-bold text-center text-sm sm:text-base">
+                                            {forecast.main.temp}°C
+                                        </td>
+                                        <td className="px-4 py-2 text-gray-600 font-semibold text-center text-sm sm:text-base">
+                                            {maxTemp}°C
+                                        </td>
+                                        <td className="px-4 py-2 text-gray-600 font-semibold text-center text-sm sm:text-base">
+                                            {minTemp}°C
+                                        </td>
+                                        <td className="px-4 py-2 flex items-center justify-center text-gray-600 font-semibold space-x-2 text-sm sm:text-base">
+                                            <img
+                                                src={`https://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`}
+                                                alt={`Icona meteo: ${forecast.weather[0].description}`}
+                                                className="w-6 h-6 sm:w-8 sm:h-8"
+                                            />
+                                            <span className="capitalize">{forecast.weather[0].description}</span>
+                                        </td>
+                                    </tr>
+                                );
+                            }
+                            return null;
+                        })}
+                    </tbody>
+                </table>
+            </div>
         </motion.div>
     );
-
-
+    
 };
 
 export default ForecastList;
