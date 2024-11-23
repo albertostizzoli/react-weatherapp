@@ -6,7 +6,7 @@ import { useWeather } from "../context/WeatherContext";
 const Header = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false); // Stato per aprire/chiudere la sidebar
     const [savedCities, setSavedCities] = useState([]); // Stato per memorizzare le città salvate
-    const { city, setCity, fetchWeatherData, fetchWeatherDataByLocation} = useWeather();
+    const { city, setCity, fetchWeatherData, fetchWeatherDataByLocation, error } = useWeather();
 
     // Funzione per aprire e chiudere la Sidebar
     const toggleSidebar = () => {
@@ -82,7 +82,7 @@ const Header = () => {
             </h1>
 
             {/* Bottone per aprire la Sidebar */}
-            <button onClick={toggleSidebar} className="text-white text-3xl font-bold p-2">
+            <button onClick={toggleSidebar} aria-label="Apri il menu" className="text-white text-3xl font-bold p-2">
                 <i className="fa-solid fa-bars"></i>
             </button>
 
@@ -90,34 +90,37 @@ const Header = () => {
             {isSidebarOpen && (
                 <motion.div
                     // Definisce l'animazione di apertura della Sidebar
-                    initial={{ x: "100%" }}
-                    animate={{ x: 0 }}
-                    exit={{ x: "100%" }}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    initial={{ x: "100%" }}  // Posizione iniziale della Sidebar fuori dallo schermo, a destra
+                    animate={{ x: 0 }}  // Posizione a sinistra della Sidebar una volta animata
+                    exit={{ x: "100%" }}  // Posizione di uscita della Sidebar, torna a destra e scompare fuori dallo schermo
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}   // Configurazione della transizione di animazione con tipo, rigidità e smorzamento della molla
                     className="fixed right-0 top-0 h-full w-[390px] bg-gradient-to-r from-blue-600 to-blue-800 shadow-lg p-4 flex flex-col space-y-4 z-50"
                 >
                     {/* Bottone per chiudere la Sidebar */}
                     <div className="flex justify-end">
-                        <button onClick={toggleSidebar} className="text-white text-3xl font-bold">
+                        <button onClick={toggleSidebar} aria-label="Chiudi il menu" className="text-white text-3xl font-bold">
                             <i className="fa-solid fa-xmark"></i>
                         </button>
                     </div>
 
                     {/* Componente SearchBar per cercare le città */}
-                    <SearchBar />
+                    <SearchBar className="w-full rounded-md p-3 text-gray-800 placeholder-gray-500 bg-white focus:ring-2 focus:ring-blue-500" />
 
                     {/* Sezione con pulsanti per salvare una città e ottenere la geolocalizzazione */}
-                    <div className="flex justify-around items-center mt-4">
+                    <div className="flex justify-evenly items-center mt-4">
                         {/* Bottone per salvare la città attuale */}
-                        <button onClick={handleSaveCity} className="text-white text-3xl font-bold">
+                        <button onClick={handleSaveCity} className="hover:text-blue-300 flex flex-col items-center text-white text-3xl font-bold">
                             <i className="fa-solid fa-plus"></i>
+                            <span className="text-sm mt-2">Salva</span>
                         </button>
+
                         {/* Bottone per ottenere la posizione dell'utente */}
                         <button onClick={(event) => {
                             event.preventDefault();
                             getUserLocation();
-                        }} className="text-white text-3xl font-bold">
+                        }} className="hover:text-blue-300 flex flex-col items-center text-white text-3xl font-bold">
                             <i className="fas fa-map-marker-alt"></i>
+                            <span className="text-sm mt-2">Posizione</span>
                         </button>
                     </div>
 
@@ -128,15 +131,12 @@ const Header = () => {
                             {savedCities.map((savedCity, index) => (
                                 <li key={index} className="p-2 text-white bg-blue-700 rounded flex justify-between items-center">
                                     {/* Bottone per selezionare una città salvata */}
-                                    <button onClick={() => handleSelectCity(savedCity)}>
+                                    <button onClick={() => handleSelectCity(savedCity)} className="hover:text-blue-300">
                                         {savedCity}
                                     </button>
                                     {/* Bottone per rimuovere una città salvata */}
-                                    <button>
-                                        <i className="fa-solid fa-trash"
-                                            onClick={() => handleRemoveCity(savedCity)}
-                                            aria-label={`Rimuovi ${savedCity}`}>
-                                        </i>
+                                    <button onClick={() => handleRemoveCity(savedCity)} className="hover:text-red-600">
+                                        <i className="fa-solid fa-trash" aria-label={`Rimuovi ${savedCity}`}></i>
                                     </button>
                                 </li>
                             ))}
