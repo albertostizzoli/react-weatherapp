@@ -6,14 +6,14 @@ import { useWeather } from "../context/WeatherContext";
 const Header = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(false); // Stato per aprire/chiudere la sidebar
     const [savedCities, setSavedCities] = useState([]); // Stato per memorizzare le città salvate
-    const { city, setCity, fetchWeatherData, fetchWeatherDataByLocation, error } = useWeather();
+    const { city, setCity, fetchWeatherData, fetchWeatherDataByLocation, error } = useWeather(); // Prende i dati dal WeatherContext
 
-    // Stato per gestire la modalità Dark
+    // Stato per gestire la Dark Mode
     const [isDarkMode, setIsDarkMode] = useState(() => {
         return JSON.parse(localStorage.getItem("isDarkMode")) || false;
     });
 
-    // Effetto per impostare la modalità Dark quando il componente è montato
+    // Effetto per impostare la Dark Mode quando la pagina è caricata
     useEffect(() => {
         if (isDarkMode) {
             document.documentElement.classList.add("dark");
@@ -105,19 +105,19 @@ const Header = () => {
             <h1 className="text-3xl font-bold text-white dark:text-gray-100 flex items-center justify-center">
                 <span role="img" aria-label="rain-cloud">🌧️</span> Weather App
             </h1>
+            <div className="flex items-center">
+                {/* Pulsante per attivare/disattivare la Dark Mode */}
+                <button
+                    onClick={toggleDarkMode}
+                    className="text-white text-xl p-2 ml-4">
+                    {isDarkMode ? "☀️" : "🌙"}
+                </button>
 
-             {/* Pulsante per attivare/disattivare la Dark Mode */}
-             <button
-                onClick={toggleDarkMode}
-                className="text-white text-xl p-2 ml-4 bg-blue-700 hover:bg-blue-600 rounded-lg dark:bg-gray-700 dark:hover:bg-gray-500"
-            >
-                {isDarkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
-            </button>
-
-            {/* Bottone per aprire la Sidebar */}
-            <button onClick={toggleSidebar} aria-label="Apri il menu" className="text-white dark:text-gray-200 text-3xl font-bold p-2">
-                <i className="fa-solid fa-bars"></i>
-            </button>
+                {/* Bottone per aprire la Sidebar */}
+                <button onClick={toggleSidebar} aria-label="Apri il menu" className="text-white dark:text-gray-200 text-3xl font-bold p-2">
+                    <i className="fa-solid fa-bars"></i>
+                </button>
+            </div>
 
             {/* Condizione per mostrare la Sidebar */}
             {isSidebarOpen && (
