@@ -43,15 +43,15 @@ const WeatherCarousel = () => {
 
     return (
         <motion.div
-            className="relative w-full max-w-md mx-auto mt-4 text-center"
+            className="relative w-full max-w-md mx-auto mt-4 text-center shadow-lg"
             variants={carousel}
             initial="initial"
             whileInView="animate"
         >
             {/* Header */}
-            <div className="w-full px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-800 text-white rounded-t-lg shadow-lg">
+            <div className="w-full px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white dark:from-gray-700 dark:to-gray-900 rounded-t-lg shadow-lg">
                 <h4 className="text-lg font-semibold flex items-center justify-center">
-                <span role="img" aria-label="Icona orologio">⏰</span> Previsioni ogni 3 ore
+                    <span role="img" aria-label="Icona orologio">⏰</span> Previsioni ogni 3 ore
                 </h4>
             </div>
 
@@ -64,10 +64,10 @@ const WeatherCarousel = () => {
                     {forecastData.map((forecast, index) => (
                         <div
                             key={index}
-                            className={`p-6 bg-white shadow-lg rounded-lg text-center min-w-full transform transition duration-500 ${currentIndex === index ? 'scale-105' : 'scale-100'}`}
+                            className={`p-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg text-center min-w-full transform transition duration-500 ${currentIndex === index ? 'scale-105' : 'scale-100'}`}
                         >
                             {/* Ora e data */}
-                            <h3 className="text-2xl font-bold text-gray-800">
+                            <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
                                 {new Date(forecast.dt * 1000).toLocaleString("it-IT", {
                                     weekday: "short",
                                     hour: "2-digit",
@@ -76,7 +76,7 @@ const WeatherCarousel = () => {
                             </h3>
 
                             {/* Temperatura */}
-                            <p className="text-5xl font-extrabold text-blue-700 mt-2">
+                            <p className="text-5xl font-extrabold text-blue-700 dark:text-gray-300 mt-2">
                                 {forecast.main.temp} °C
                             </p>
 
@@ -87,13 +87,13 @@ const WeatherCarousel = () => {
                                     alt={forecast.weather[0].description}
                                     className="w-16 h-16"
                                 />
-                                <p className="text-lg capitalize text-gray-600">
+                                <p className="text-lg capitalize text-gray-600 dark:text-gray-200">
                                     {forecast.weather[0].description}
                                 </p>
                             </div>
 
                             {/* Temperature massima e minima */}
-                            <div className="flex justify-around text-lg text-gray-800">
+                            <div className="flex justify-around text-lg text-gray-800 dark:text-gray-100">
                                 <div><strong>Massima:</strong> {forecast.main.temp_max}°C</div>
                                 <div><strong>Minima:</strong> {forecast.main.temp_min}°C</div>
                             </div>
@@ -107,7 +107,7 @@ const WeatherCarousel = () => {
                 {forecastData.map((_, idx) => (
                     <div
                         key={idx}
-                        className={`w-3 h-3 rounded-full ${idx === currentIndex ? 'bg-blue-600' : 'bg-gray-300'} transition duration-300`}
+                        className={`w-3 h-3 rounded-full ${idx === currentIndex ? 'bg-blue-600' : 'bg-gray-300'} transition duration-300 dark:${idx === currentIndex ? 'bg-gray-500' : 'bg-gray-300'}`}
                     ></div>
                 ))}
             </div>
@@ -118,22 +118,19 @@ const WeatherCarousel = () => {
                     <button
                         onClick={prevSlide}
                         aria-label="Slide precedente"
-                        className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white text-blue-600 text-2xl p-2 rounded-full shadow-lg hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
+                        className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white text-blue-600 hover:bg-blue-100 dark:bg-gray-200 dark:text-gray-600 dark:hover:bg-gray-400 text-2xl p-2 rounded-full shadow-lg">
                         &lt;
                     </button>
                     <button
                         onClick={nextSlide}
                         aria-label="Slide successiva"
-                        className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white text-blue-600 text-2xl p-2 rounded-full shadow-lg hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
+                        className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white text-blue-600 hover:bg-blue-100 dark:bg-gray-200 dark:text-gray-600 dark:hover:bg-gray-400 text-2xl p-2 rounded-full shadow-lg">
                         &gt;
                     </button>
                 </>
             )}
         </motion.div>
     );
-
 };
 
 export default WeatherCarousel;

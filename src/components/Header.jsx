@@ -101,7 +101,7 @@ const Header = () => {
     };
 
     return (
-        <header className="w-full bg-gradient-to-r from-blue-600 to-blue-800 dark:from-gray-700 dark:to-gray-900 p-3 flex items-center justify-between shadow-md relative">
+        <header className="w-full bg-gradient-to-r from-blue-600 to-blue-700 dark:from-gray-700 dark:to-gray-800 p-3 flex items-center justify-between shadow-md relative">
             <h1 className="text-3xl font-bold text-white dark:text-gray-100 flex items-center justify-center">
                 <span role="img" aria-label="rain-cloud">🌧️</span> Weather App
             </h1>
@@ -127,7 +127,7 @@ const Header = () => {
                     animate={{ x: 0 }}  // Posizione a sinistra della Sidebar una volta animata
                     exit={{ x: "100%" }}  // Posizione di uscita della Sidebar, torna a destra e scompare fuori dallo schermo
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}   // Configurazione della transizione di animazione con tipo, rigidità e smorzamento della molla
-                    className="fixed right-0 top-0 h-full w-[390px] bg-gradient-to-r from-blue-600 to-blue-800 dark:from-gray-700 dark:to-gray-900 shadow-lg p-4 flex flex-col space-y-4 z-50"
+                    className="fixed right-0 top-0 h-full w-[390px] bg-gradient-to-r from-blue-600 to-blue-700 dark:from-gray-700 dark:to-gray-800 shadow-lg p-4 flex flex-col space-y-4 z-50"
                 >
                     {/* Bottone per chiudere la Sidebar */}
                     <div className="flex justify-end">
