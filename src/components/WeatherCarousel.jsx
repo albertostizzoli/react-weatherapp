@@ -57,15 +57,9 @@ const WeatherCarousel = () => {
 
             {/* Slides */}
             <div className="overflow-hidden">
-                <div
-                    className="flex transition-transform duration-700 ease-in-out"
-                    style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-                >
+                <div className="flex transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                     {forecastData.map((forecast, index) => (
-                        <div
-                            key={index}
-                            className={`p-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg text-center min-w-full transform transition duration-500 ${currentIndex === index ? 'scale-105' : 'scale-100'}`}
-                        >
+                        <div key={index} className={`p-6 bg-white dark:bg-gray-800 shadow-lg rounded-lg text-center min-w-full transform transition duration-500 ${currentIndex === index ? 'scale-105' : 'scale-100'}`}>
                             {/* Ora e data */}
                             <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
                                 {new Date(forecast.dt * 1000).toLocaleString("it-IT", {
