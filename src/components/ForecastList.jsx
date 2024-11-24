@@ -105,7 +105,7 @@ const ForecastList = () => {
                                         <td className="px-4 py-2 text-gray-700 dark:text-white font-medium text-center text-sm sm:text-base">
                                             {day}
                                         </td>
-                                        <td className="px-4 py-2 text-blue-600 dark:text-blue-400 font-bold text-center text-sm sm:text-base">
+                                        <td className="px-4 py-2 text-blue-600 dark:text-gray-400 font-bold text-center text-sm sm:text-base">
                                             {forecast.main.temp}°C
                                         </td>
                                         <td className="px-4 py-2 text-gray-600 dark:text-white font-semibold text-center text-sm sm:text-base">
