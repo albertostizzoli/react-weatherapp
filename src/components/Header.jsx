@@ -54,26 +54,27 @@ const Header = () => {
 
     // Funzione per recuperare la geolocalizzazione dal browser dell'utente
     const getUserLocation = () => {
-        // Controlla se il browser supporta la geolocalizzazione
         if (navigator.geolocation) {
-            // Se supportata, richiede la posizione corrente dell'utente
             navigator.geolocation.getCurrentPosition(
                 (position) => {
-                    // Estrae la latitudine e la longitudine dalle coordinate ottenute
                     const { latitude, longitude } = position.coords;
-                    // Chiama la funzione per ottenere i dati meteo utilizzando le coordinate
                     fetchWeatherDataByLocation(latitude, longitude);
                 },
-                // In caso di errore nella richiesta di geolocalizzazione, stampa un messaggio d'errore in console
                 (error) => {
                     console.error("Errore nella geolocalizzazione", error);
+                    // Riprova la geolocalizzazione in caso di errore, se necessario
+                    setTimeout(getUserLocation, 5000); // Riprova dopo 5 secondi
+                },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 15000, // Timeout aumentato per consentire più tempo
+                    maximumAge: 5000  // Conserva la posizione per 5 secondi, poi richiede una nuova
                 }
             );
         } else {
-            // Messaggio d'errore se la geolocalizzazione non è supportata dal browser
             console.error("La geolocalizzazione non è supportata dal browser");
         }
-    };
+    };        
 
     return (
         <header className="w-full bg-gradient-to-r from-blue-600 to-blue-800 p-3 flex items-center justify-between shadow-md relative">
