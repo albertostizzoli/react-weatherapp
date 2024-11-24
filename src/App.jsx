@@ -27,7 +27,7 @@ const MainApp = () => {
   }, [loading]); // Dipende da `loading` o da un'altra condizione di caricamento
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-blue-50">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-blue-50 dark:bg-slate-600">
       {loaders ? (
         <>
           <Loader />
@@ -36,7 +36,7 @@ const MainApp = () => {
         <>
           <Header />
           <div className="flex-grow flex flex-col sm:flex-row items-center justify-evenly w-full">
-            {error && <p className="text-red-500 mt-4">{error}</p>}
+            {error && <p className="text-red-500 mt-4 dark:text-white">{error}</p>}
             <div className="w-full sm:w-auto">
               {weatherData && <WeatherDetails />}
               {forecastData.length > 0 && <WeatherCarousel />}
