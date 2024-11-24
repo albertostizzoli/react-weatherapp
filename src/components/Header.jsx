@@ -168,7 +168,7 @@ const Header = () => {
                                         {savedCity}
                                     </button>
                                     {/* Bottone per rimuovere una città salvata */}
-                                    <button onClick={() => handleRemoveCity(savedCity)} className="hover:text-red-600 dark:hover:text-red-400">
+                                    <button onClick={() => handleRemoveCity(savedCity)} className="hover:text-red-600 dark:hover:text-gray-700">
                                         <i className="fa-solid fa-trash" aria-label={`Rimuovi ${savedCity}`}></i>
                                     </button>
                                 </li>

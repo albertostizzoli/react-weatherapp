@@ -16,7 +16,7 @@ const Loader = () => {
     };
 
     return (
-        <motion.div className="flex justify-center items-center dark:bg-slate-600" variants={loaderVariants} animate="animate">
+        <motion.div className="flex justify-center items-center dark:bg-gray-500" variants={loaderVariants} animate="animate">
             <span
                 role="img"
                 aria-label="weather"

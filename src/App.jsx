@@ -27,7 +27,7 @@ const MainApp = () => {
   }, [loading]); // Dipende da `loading` o da un'altra condizione di caricamento
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-blue-50 dark:bg-slate-600">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-blue-50 dark:bg-gray-500">
       {loaders ? (
         <>
           <Loader />
