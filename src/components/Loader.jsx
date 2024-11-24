@@ -16,12 +16,11 @@ const Loader = () => {
     };
 
     return (
-        <motion.div className="flex justify-center items-center" variants={loaderVariants} animate="animate">
+        <motion.div className="flex justify-center items-center dark:bg-slate-600" variants={loaderVariants} animate="animate">
             <span
                 role="img"
                 aria-label="weather"
-                style={{ fontSize: "100px" }}  // Imposta la dimensione dell'emoji
-            >
+                style={{ fontSize: "100px" }}>
                 ☀️
             </span>
         </motion.div>
