@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { WeatherProvider, useWeather } from "./context/WeatherContext";
 import Header from "./components/Header";
-import WeatherDetails from "./components/WeatherDetails";
-import ForecastList from "./components/ForecastList";
-import WeatherCarousel from "./components/WeatherCarousel";
-import ForecastGraph from "./components/ForecastGraph";
+import Details from "./components/Details";
+import Table from "./components/Table";
+import Carousel from "./components/Carousel";
+import Graph from "./components/Graph";
 import Loader from "./components/Loader";
 
 // Componente principale che visualizza l'applicazione meteo
@@ -38,12 +38,12 @@ const MainApp = () => {
           <div className="flex-grow flex flex-col sm:flex-row items-center justify-evenly w-full">
             {error && <p className="text-red-500 mt-4 dark:text-white">{error}</p>}
             <div className="w-full sm:w-auto">
-              {weatherData && <WeatherDetails />}
-              {forecastData.length > 0 && <WeatherCarousel />}
+              {weatherData && <Details />}
+              {forecastData.length > 0 && <Carousel />}
             </div>
             <div className="w-full sm:w-auto">
-              {forecastData.length > 0 && <ForecastList />}
-              {forecastData.length > 0 && <ForecastGraph />}
+              {forecastData.length > 0 && <Table />}
+              {forecastData.length > 0 && <Graph />}
             </div>
           </div>
         </>
