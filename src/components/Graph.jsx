@@ -8,8 +8,8 @@ import { motion } from "framer-motion";
 // Registro i componenti di Chart.js se necessari
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-// Componente ForecastGraph che mostra i dati delle previsioni sotto forma di grafico
-const ForecastGraph = () => {
+// Componente Graph che mostra i dati delle previsioni sotto forma di grafico
+const Graph = () => {
     const { forecastData } = useWeather(); // Ottiene i dati delle previsioni meteo dal contesto
     const [legendPosition, setLegendPosition] = useState('right'); // Stato per la posizione della legenda
 
@@ -99,12 +99,12 @@ const ForecastGraph = () => {
         scales: {
             y: {
                 grid: {
-                    color: 'rgba(200, 200, 200, 0.5)', // Colore della griglia dell'asse Y
-                    lineWidth: 0.5, // Spessore delle linee della griglia dell'asse Y
+                    color: 'black', // Colore della griglia dell'asse Y
+                    lineWidth: 1, // Spessore delle linee della griglia dell'asse Y
                     borderDash: [5, 5] // Linee tratteggiate
                 },
                 ticks: {
-                    color: '#333', // Colore delle etichette dei valori sull'asse Y
+                    color: 'black', // Colore delle etichette dei valori sull'asse Y
                     font: {
                         size: 14, // Dimensione del font per i valori dell'asse Y
                         family: 'Arial', // Font delle etichette dell'asse Y
@@ -117,7 +117,7 @@ const ForecastGraph = () => {
                 },
                 ticks: {
                     maxRotation: 45, // Inclina le etichette
-                    color: '#444', // Colore più leggibile
+                    color: 'black', // Colore più leggibile
                 },
             },
         },
@@ -151,4 +151,4 @@ const ForecastGraph = () => {
     );
 };
 
-export default ForecastGraph;
+export default Graph;

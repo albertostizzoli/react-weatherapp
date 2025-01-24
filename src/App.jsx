@@ -6,6 +6,7 @@ import Table from "./components/Table";
 import Carousel from "./components/Carousel";
 import Graph from "./components/Graph";
 import Loader from "./components/Loader";
+import backgroundImage from './assets/background.jpg';
 
 // Componente principale che visualizza l'applicazione meteo
 const MainApp = () => {
@@ -27,7 +28,7 @@ const MainApp = () => {
   }, [loading]); // Dipende da `loading` o da un'altra condizione di caricamento
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-blue-50 dark:bg-gray-500">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-blue-50 dark:bg-gray-500 bg-cover bg-no-repeat bg-center" style={{ backgroundImage: `url(${backgroundImage})`, }}>
       {loaders ? (
         <>
           <Loader />
@@ -35,15 +36,15 @@ const MainApp = () => {
       ) : (
         <>
           <Header />
-          <div className="flex-grow flex flex-col sm:flex-row items-center justify-evenly w-full">
+          <div className="flex-grow flex flex-col sm:flex-row items-center justify-evenly w-full bg-cover bg-no-repeat bg-center"  style={{ backgroundImage: `url(${backgroundImage})`, }}>
             {error && <p className="text-red-500 mt-4 dark:text-white">{error}</p>}
             <div className="w-full sm:w-auto">
               {weatherData && <Details />}
               {forecastData.length > 0 && <Carousel />}
             </div>
             <div className="w-full sm:w-auto">
-              {forecastData.length > 0 && <Table />}
               {forecastData.length > 0 && <Graph />}
+              {forecastData.length > 0 && <Table />}
             </div>
           </div>
         </>

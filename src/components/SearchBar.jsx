@@ -26,13 +26,13 @@ const SearchBar = () => {
                     placeholder="Inserisci una città"
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-gray-500"
+                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 dark:focus:ring-gray-500"
                     aria-label="Cerca città"
                 />
             </div>
             <button
                 type="submit"
-                className=" p-2 bg-blue-500 hover:bg-blue-600 dark:bg-gray-600 dark:hover:bg-gray-500 text-white font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out"
+                className=" p-2 bg-yellow-300 hover:bg-red-600 hover:text-white dark:bg-gray-600 dark:hover:bg-gray-500 text-black font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition duration-300 ease-in-out"
                 aria-label="Cerca previsioni meteo">
                 Cerca
             </button>

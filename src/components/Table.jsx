@@ -28,8 +28,8 @@ const getMaxMinTemps = (forecasts) => {
     return { maxTemp, minTemp };
 };
 
-// Componente ForecastList che mostra le previsioni dei giorni successivi
-const ForecastList = () => {
+// Componente Table che mostra le previsioni dei giorni successivi
+const Table = () => {
     const { forecastData } = useWeather(); // Ottiene i dati delle previsioni meteo dal contesto
 
     const today = new Date().toLocaleDateString("it-IT", { weekday: "long" }); // Ottiene il giorno odierno in formato italiano
@@ -56,10 +56,10 @@ const ForecastList = () => {
     return (
         <motion.div className="mt-2" variants={table} initial="initial" whileInView="animate">
             <div className="overflow-x-auto">
-                <table className="min-w-full bg-white rounded-lg shadow-md overflow-hidden">
+                <table className="min-w-full rounded-lg shadow-md overflow-hidden">
                     {/* Intestazione */}
                     <thead>
-                        <tr className="text-white bg-gradient-to-r from-blue-600 to-blue-700 dark:from-gray-700 dark:to-gray-800">
+                        <tr className="text-white bg-gradient-to-r from-red-500 to-orange-600 dark:from-gray-700 dark:to-gray-800">
                             <th className="px-4 py-2 text-center font-semibold text-sm sm:text-base">
                                 <div className="flex items-center justify-center space-x-2 whitespace-nowrap">
                                     <span>Giorno</span>
@@ -101,20 +101,20 @@ const ForecastList = () => {
                                 const forecast = groupedForecasts[day][0];
     
                                 return (
-                                    <tr key={index} className="border-b last:border-none dark:bg-gray-800">
-                                        <td className="px-4 py-2 text-gray-700 dark:text-white font-medium text-center text-sm sm:text-base">
+                                    <tr key={index} className="border-b last:border-none">
+                                        <td className="px-4 py-2 text-white dark:text-white font-medium text-center text-sm sm:text-base">
                                             {day}
                                         </td>
-                                        <td className="px-4 py-2 text-blue-600 dark:text-gray-400 font-bold text-center text-sm sm:text-base">
+                                        <td className="px-4 py-2 text-red-600 dark:text-gray-400 font-bold text-center text-sm sm:text-base">
                                             {forecast.main.temp}°C
                                         </td>
-                                        <td className="px-4 py-2 text-gray-600 dark:text-white font-semibold text-center text-sm sm:text-base">
+                                        <td className="px-4 py-2 text-white dark:text-white font-semibold text-center text-sm sm:text-base">
                                             {maxTemp}°C
                                         </td>
-                                        <td className="px-4 py-2 text-gray-600 dark:text-white font-semibold text-center text-sm sm:text-base">
+                                        <td className="px-4 py-2 text-white dark:text-white font-semibold text-center text-sm sm:text-base">
                                             {minTemp}°C
                                         </td>
-                                        <td className="px-4 py-2 flex items-center justify-center text-gray-600 dark:text-white font-semibold space-x-2 text-sm sm:text-base">
+                                        <td className="px-4 py-2 flex items-center justify-center text-white dark:text-white font-semibold space-x-2 text-sm sm:text-base">
                                             <img
                                                 src={`https://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`}
                                                 alt={`Icona meteo: ${forecast.weather[0].description}`}
@@ -135,4 +135,4 @@ const ForecastList = () => {
     
 };
 
-export default ForecastList;
+export default Table;

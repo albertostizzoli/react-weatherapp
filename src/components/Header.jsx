@@ -101,7 +101,7 @@ const Header = () => {
     };
 
     return (
-        <header className="w-full bg-gradient-to-r from-blue-600 to-blue-700 dark:from-gray-700 dark:to-gray-800 p-3 flex items-center justify-between shadow-md relative">
+        <header className="w-full bg-gradient-to-r from-red-500 to-orange-600 dark:from-gray-700 dark:to-gray-800 p-3 flex items-center justify-between shadow-md relative">
             <h1 className="text-3xl font-bold text-white dark:text-gray-100 flex items-center justify-center">
                 <span role="img" aria-label="rain-cloud">🌧️</span> Weather App
             </h1>
@@ -127,7 +127,7 @@ const Header = () => {
                     animate={{ x: 0 }}  // Posizione a sinistra della Sidebar una volta animata
                     exit={{ x: "100%" }}  // Posizione di uscita della Sidebar, torna a destra e scompare fuori dallo schermo
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}   // Configurazione della transizione di animazione con tipo, rigidità e smorzamento della molla
-                    className="fixed right-0 top-0 h-full w-[390px] bg-gradient-to-r from-blue-600 to-blue-700 dark:from-gray-700 dark:to-gray-800 shadow-lg p-4 flex flex-col space-y-4 z-50"
+                    className="fixed right-0 top-0 h-full w-[390px] bg-gradient-to-r from-red-500 to-orange-600 dark:from-gray-700 dark:to-gray-800 shadow-lg p-4 flex flex-col space-y-4 z-50"
                 >
                     {/* Bottone per chiudere la Sidebar */}
                     <div className="flex justify-end">
@@ -142,7 +142,7 @@ const Header = () => {
                     {/* Sezione con pulsanti per salvare una città e ottenere la geolocalizzazione */}
                     <div className="flex justify-evenly items-center mt-4">
                         {/* Bottone per salvare la città attuale */}
-                        <button onClick={handleSaveCity} className="hover:text-blue-300 dark:hover:text-gray-300 flex flex-col items-center text-white dark:text-gray-100 text-3xl font-bold">
+                        <button onClick={handleSaveCity} className="hover:text-yellow-300 dark:hover:text-gray-300 flex flex-col items-center text-white dark:text-gray-100 text-3xl font-bold">
                             <i className="fa-solid fa-plus"></i>
                             <span className="text-sm mt-2">Salva</span>
                         </button>
@@ -151,7 +151,7 @@ const Header = () => {
                         <button onClick={(event) => {
                             event.preventDefault();
                             getUserLocation();
-                        }} className="hover:text-blue-300 dark:hover:text-gray-300 flex flex-col items-center text-white dark:text-gray-100 text-3xl font-bold">
+                        }} className="hover:text-yellow-300 dark:hover:text-gray-300 flex flex-col items-center text-white dark:text-gray-100 text-3xl font-bold">
                             <i className="fas fa-map-marker-alt"></i>
                             <span className="text-sm mt-2">Posizione</span>
                         </button>
@@ -162,13 +162,13 @@ const Header = () => {
                         <h2 className="text-lg font-semibold">Città salvate</h2>
                         <ul className="mt-2 space-y-1">
                             {savedCities.map((savedCity, index) => (
-                                <li key={index} className="p-2 text-white dark:text-gray-200 bg-blue-700 dark:bg-gray-600 rounded flex justify-between items-center">
+                                <li key={index} className="p-2 hover:border text-white dark:text-gray-200 bg-yellow-500 hover:bg-red-500 dark:bg-gray-600 rounded flex justify-between items-center">
                                     {/* Bottone per selezionare una città salvata */}
-                                    <button onClick={() => handleSelectCity(savedCity)} className="hover:text-blue-300 dark:hover:text-gray-300">
+                                    <button onClick={() => handleSelectCity(savedCity)}>
                                         {savedCity}
                                     </button>
                                     {/* Bottone per rimuovere una città salvata */}
-                                    <button onClick={() => handleRemoveCity(savedCity)} className="hover:text-red-600 dark:hover:text-gray-700">
+                                    <button onClick={() => handleRemoveCity(savedCity)} className="hover:text-yellow-400 dark:hover:text-gray-700">
                                         <i className="fa-solid fa-trash" aria-label={`Rimuovi ${savedCity}`}></i>
                                     </button>
                                 </li>

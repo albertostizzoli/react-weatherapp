@@ -2,8 +2,8 @@ import React from "react";
 import { useWeather } from "../context/WeatherContext";
 import { motion } from "framer-motion";
 
-// Componente WeatherDetails che mostra i dettagli del meteo per la città selezionata
-const WeatherDetails = () => {
+// Componente Details che mostra i dettagli del meteo per la città selezionata
+const Details = () => {
 
     // Recupero weatherData dal contesto tramite il hook useWeather
     const { weatherData } = useWeather();
@@ -32,18 +32,18 @@ const WeatherDetails = () => {
             whileInView="animate"
         >
             {/* Header */}
-            <div className="w-full px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white dark:from-gray-700 dark:to-gray-900 shadow-lg">
+            <div className="w-full px-6 py-2 bg-gradient-to-r from-red-500 to-orange-600 text-white dark:from-gray-700 dark:to-gray-900 shadow-lg">
                 <h4 className="text-lg font-semibold flex items-center justify-center">
                     <span role="img" aria-label="weather">☀️</span> Previsione attuale
                 </h4>
             </div>
 
             {/* Body */}
-            <div className="flex flex-col w-full p-3 bg-white dark:bg-gray-800">
+            <div className="flex flex-col w-full p-3">
                 {/* Città e temperatura */}
                 <div className="mb-4">
-                    <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">{weatherData.name}</h2>
-                    <p className="text-5xl font-extrabold text-blue-700 dark:text-gray-300">{weatherData.main.temp}°C</p>
+                    <h2 className="text-2xl font-bold text-white dark:text-gray-100">{weatherData.name}</h2>
+                    <p className="text-5xl font-extrabold text-red-500 dark:text-gray-500">{weatherData.main.temp}°C</p>
                 </div>
 
                 {/* Icona e descrizione */}
@@ -53,11 +53,11 @@ const WeatherDetails = () => {
                         alt="Meteo Icon"
                         className="w-20 h-20"
                     />
-                    <p className="text-xl capitalize text-gray-600 dark:text-gray-200">{weatherData.weather[0].description}</p>
+                    <p className="text-xl capitalize text-white dark:text-gray-200">{weatherData.weather[0].description}</p>
                 </div>
 
                 {/* Temperature min/max */}
-                <div className="flex justify-around text-lg text-gray-800 dark:text-gray-100">
+                <div className="flex justify-around text-lg text-white dark:text-gray-100">
                     <div><strong>Massima:</strong> {weatherData.main.temp_max}°C</div>
                     <div><strong>Minima:</strong> {weatherData.main.temp_min}°C</div>
                 </div>
@@ -67,4 +67,4 @@ const WeatherDetails = () => {
     );
 };
 
-export default WeatherDetails;
+export default Details;
