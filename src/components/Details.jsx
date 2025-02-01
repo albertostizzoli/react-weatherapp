@@ -26,18 +26,12 @@ const Details = () => {
 
     return (
         <motion.div
-            className="flex flex-col items-center text-center max-w-md mx-auto rounded-lg shadow-lg overflow-hidden"
+            className="flex flex-col items-center text-center max-w-md mx-auto rounded-lg overflow-hidden shadow-[0_0_20px_5px_rgb(239,68,68)] dark:shadow-gray-500"
             variants={card}
             initial="initial"
             whileInView="animate"
         >
-            {/* Header */}
-            <div className="w-full px-6 py-2 bg-gradient-to-r from-red-500 to-orange-600 text-white dark:from-gray-700 dark:to-gray-900 shadow-lg">
-                <h4 className="text-lg font-semibold flex items-center justify-center">
-                    <span role="img" aria-label="weather">☀️</span> Previsione attuale
-                </h4>
-            </div>
-
+        
             {/* Body */}
             <div className="flex flex-col w-full p-3">
                 {/* Città e temperatura */}

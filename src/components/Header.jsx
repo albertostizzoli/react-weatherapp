@@ -101,7 +101,7 @@ const Header = () => {
     };
 
     return (
-        <header className="w-full bg-gradient-to-r from-red-500 to-orange-600 dark:from-gray-700 dark:to-gray-800 p-3 flex items-center justify-between shadow-md relative">
+        <header className="w-full bg-red-500  dark:bg-gray-800 p-3 flex items-center justify-between shadow-md relative">
             <h1 className="text-3xl font-bold text-white dark:text-gray-100 flex items-center justify-center">
                 <span role="img" aria-label="rain-cloud">🌧️</span> Weather App
             </h1>
@@ -127,7 +127,7 @@ const Header = () => {
                     animate={{ x: 0 }}  // Posizione a sinistra della Sidebar una volta animata
                     exit={{ x: "100%" }}  // Posizione di uscita della Sidebar, torna a destra e scompare fuori dallo schermo
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}   // Configurazione della transizione di animazione con tipo, rigidità e smorzamento della molla
-                    className="fixed right-0 top-0 h-full w-[390px] bg-gradient-to-r from-red-500 to-orange-600 dark:from-gray-700 dark:to-gray-800 shadow-lg p-4 flex flex-col space-y-4 z-50"
+                    className="fixed right-0 top-0 h-full w-[390px] bg-red-500  dark:bg-gray-800 shadow-lg p-4 flex flex-col space-y-4 z-50"
                 >
                     {/* Bottone per chiudere la Sidebar */}
                     <div className="flex justify-end">
@@ -160,9 +160,9 @@ const Header = () => {
                     {/* Lista delle città salvate */}
                     <div className="mt-6 text-white dark:text-gray-100">
                         <h2 className="text-lg font-semibold">Città salvate</h2>
-                        <ul className="mt-2 space-y-1">
+                        <ul className="mt-2 space-y-1 hover:cursor-pointer">
                             {savedCities.map((savedCity, index) => (
-                                <li key={index} className="p-2 hover:border text-white dark:text-gray-200 bg-yellow-500 hover:bg-red-500 dark:bg-gray-600 rounded flex justify-between items-center">
+                                <li key={index} className="p-2 hover:border text-white dark:text-gray-200 bg-yellow-500 hover:bg-red-500 dark:bg-gray-600 dark:hover:bg-gray-500 rounded flex justify-between items-center">
                                     {/* Bottone per selezionare una città salvata */}
                                     <button onClick={() => handleSelectCity(savedCity)}>
                                         {savedCity}

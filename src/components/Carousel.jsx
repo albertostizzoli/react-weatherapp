@@ -43,20 +43,13 @@ const Carousel = () => {
 
     return (
         <motion.div
-            className="relative w-full max-w-md mx-auto mt-4 text-center shadow-lg"
+            className="relative w-full max-w-md mx-auto mt-10 text-center"
             variants={carousel}
             initial="initial"
             whileInView="animate"
         >
-            {/* Header */}
-            <div className="w-full px-6 py-2 bg-gradient-to-r from-red-500 to-orange-600 text-white dark:from-gray-700 dark:to-gray-900 rounded-t-lg shadow-lg">
-                <h4 className="text-lg font-semibold flex items-center justify-center">
-                    <span role="img" aria-label="Icona orologio">⏰</span> Previsioni ogni 3 ore
-                </h4>
-            </div>
-
             {/* Slides */}
-            <div className="overflow-hidden">
+            <div className="overflow-hidden rounded-lg shadow-[0_0_20px_5px_rgb(239,68,68)] dark:shadow-gray-500">
                 <div className="flex transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                     {forecastData.map((forecast, index) => (
                         <div key={index} className={`p-6  shadow-lg rounded-lg text-center min-w-full transform transition duration-500 ${currentIndex === index ? 'scale-105' : 'scale-100'}`}>
@@ -87,7 +80,7 @@ const Carousel = () => {
                             </div>
 
                             {/* Temperature massima e minima */}
-                            <div className="flex justify-around text-lg text-gray-800 dark:text-gray-100">
+                            <div className="flex justify-around text-lg text-white dark:text-gray-100">
                                 <div><strong>Massima:</strong> {forecast.main.temp_max}°C</div>
                                 <div><strong>Minima:</strong> {forecast.main.temp_min}°C</div>
                             </div>
@@ -101,8 +94,10 @@ const Carousel = () => {
                 {forecastData.map((_, idx) => (
                     <div
                         key={idx}
-                        className={`w-3 h-3 rounded-full ${idx === currentIndex ? 'bg-red-600' : 'bg-orange-300'} transition duration-300 dark:${idx === currentIndex ? 'bg-gray-500' : 'bg-gray-300'}`}
+                        className={`w-3 h-3 rounded-full transition duration-300 
+                        ${idx === currentIndex ? 'bg-red-600 dark:bg-gray-500' : 'bg-orange-300 dark:bg-gray-300'}`}
                     ></div>
+
                 ))}
             </div>
 
