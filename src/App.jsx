@@ -36,7 +36,7 @@ const MainApp = () => {
       ) : (
         <>
           <Header />
-          <div className="flex-grow flex flex-col sm:flex-row items-center justify-evenly w-full bg-cover bg-no-repeat bg-center"  style={{ backgroundImage: `url(${backgroundImage})`, }}>
+          <div className="flex-grow flex flex-col sm:flex-row items-center justify-evenly w-full">
             {error && <p className="text-red-500 mt-4 dark:text-white">{error}</p>}
             <div className="w-full sm:w-auto">
               {weatherData && <Details />}

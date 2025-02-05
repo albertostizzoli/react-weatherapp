@@ -32,7 +32,7 @@ const SearchBar = () => {
             </div>
             <button
                 type="submit"
-                className=" p-2 bg-yellow-300 hover:bg-red-600 hover:text-white dark:bg-gray-600 dark:hover:bg-gray-500 text-black font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition duration-300 ease-in-out"
+                className=" p-2 bg-yellow-300 hover:bg-red-600 hover:text-white dark:bg-gray-600 dark:hover:bg-gray-500 text-black dark:text-white font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50 transition duration-300 ease-in-out"
                 aria-label="Cerca previsioni meteo">
                 Cerca
             </button>

@@ -102,9 +102,8 @@ const Header = () => {
 
     return (
         <header className="w-full bg-red-500  dark:bg-gray-800 p-3 flex items-center justify-between shadow-md relative">
-            <h1 className="text-3xl font-bold text-white dark:text-gray-100 flex items-center justify-center">
-                <span role="img" aria-label="rain-cloud">🌧️</span> Weather App
-            </h1>
+            {/* Componente SearchBar per cercare le città */}
+            <SearchBar className="w-full rounded-md p-3 text-gray-800 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 bg-white dark:bg-gray-700" />
             <div className="flex items-center">
                 {/* Pulsante per attivare/disattivare la Dark Mode */}
                 <button
@@ -130,17 +129,16 @@ const Header = () => {
                     className="fixed right-0 top-0 h-full w-[390px] bg-red-500  dark:bg-gray-800 shadow-lg p-4 flex flex-col space-y-4 z-50"
                 >
                     {/* Bottone per chiudere la Sidebar */}
-                    <div className="flex justify-end">
+                    <div className="flex justify-between mt-1">
+                        <h1 className="text-3xl font-bold text-white dark:text-gray-100 flex items-center justify-center">
+                            <span role="img" aria-label="rain-cloud">🌧️</span> Weather App
+                        </h1>
                         <button onClick={toggleSidebar} aria-label="Chiudi il menu" className="text-white dark:text-gray-200 text-3xl font-bold">
                             <i className="fa-solid fa-xmark"></i>
                         </button>
                     </div>
-
-                    {/* Componente SearchBar per cercare le città */}
-                    <SearchBar className="w-full rounded-md p-3 text-gray-800 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 bg-white dark:bg-gray-700" />
-
                     {/* Sezione con pulsanti per salvare una città e ottenere la geolocalizzazione */}
-                    <div className="flex justify-evenly items-center mt-4">
+                    <div className="flex justify-evenly items-center mt-4 pt-6">
                         {/* Bottone per salvare la città attuale */}
                         <button onClick={handleSaveCity} className="hover:text-yellow-300 dark:hover:text-gray-300 flex flex-col items-center text-white dark:text-gray-100 text-3xl font-bold">
                             <i className="fa-solid fa-plus"></i>

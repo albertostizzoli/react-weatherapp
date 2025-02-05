@@ -26,7 +26,7 @@ const Details = () => {
 
     return (
         <motion.div
-            className="flex flex-col items-center text-center max-w-md mx-auto rounded-lg overflow-hidden shadow-[0_0_20px_5px_rgb(239,68,68)] dark:shadow-gray-500"
+            className="flex flex-col items-center text-center max-w-md mx-auto rounded-lg overflow-hidden backdrop-blur"
             variants={card}
             initial="initial"
             whileInView="animate"
