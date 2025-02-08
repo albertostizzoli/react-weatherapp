@@ -59,7 +59,7 @@ const Table = () => {
                 <table className="min-w-full rounded-lg shadow-md overflow-hidden">
                     {/* Intestazione */}
                     <thead>
-                        <tr className="text-white bg-red-500 dark:bg-gray-800">
+                        <tr className="text-white backdrop-blur dark:bg-gray-800">
                             <th className="px-4 py-2 text-center font-semibold text-sm sm:text-base">
                                 <div className="flex items-center justify-center space-x-2 whitespace-nowrap">
                                     <span>Giorno</span>

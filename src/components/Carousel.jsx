@@ -49,7 +49,7 @@ const Carousel = () => {
             whileInView="animate"
         >
             {/* Slides */}
-            <div className="overflow-hidden rounded-lg backdrop-blur">
+            <div className="overflow-hidden rounded-lg backdrop-blur-xl">
                 <div className="flex transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                     {forecastData.map((forecast, index) => (
                         <div key={index} className={`p-6  shadow-lg rounded-lg text-center min-w-full transform transition duration-500 ${currentIndex === index ? 'scale-105' : 'scale-100'}`}>
@@ -107,13 +107,13 @@ const Carousel = () => {
                     <button
                         onClick={prevSlide}
                         aria-label="Slide precedente"
-                        className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white text-red-600 hover:bg-red-200 dark:bg-gray-200 dark:text-gray-600 dark:hover:bg-gray-400 text-2xl p-2 rounded-full shadow-lg">
+                        className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white text-red-600 hover:bg-red-200 dark:bg-gray-200 dark:text-gray-600 dark:hover:bg-gray-400 text-2xl p-2 rounded-full shadow-lg hover:scale-[1.3] transition-all">
                         &lt;
                     </button>
                     <button
                         onClick={nextSlide}
                         aria-label="Slide successiva"
-                        className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white text-red-600 hover:bg-red-200 dark:bg-gray-200 dark:text-gray-600 dark:hover:bg-gray-400 text-2xl p-2 rounded-full shadow-lg">
+                        className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white text-red-600 hover:bg-red-200 dark:bg-gray-200 dark:text-gray-600 dark:hover:bg-gray-400 text-2xl p-2 rounded-full shadow-lg hover:scale-[1.3] transition-all">
                         &gt;
                     </button>
                 </>

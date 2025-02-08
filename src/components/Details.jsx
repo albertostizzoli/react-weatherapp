@@ -26,7 +26,7 @@ const Details = () => {
 
     return (
         <motion.div
-            className="flex flex-col items-center text-center max-w-md mx-auto rounded-lg overflow-hidden backdrop-blur"
+            className="flex flex-col items-center text-center max-w-md mx-auto rounded-lg overflow-hidden backdrop-blur-xl"
             variants={card}
             initial="initial"
             whileInView="animate"
@@ -37,7 +37,7 @@ const Details = () => {
                 {/* Città e temperatura */}
                 <div className="mb-4">
                     <h2 className="text-2xl font-bold text-white dark:text-gray-100">{weatherData.name}</h2>
-                    <p className="text-5xl font-extrabold text-red-500 dark:text-gray-500">{weatherData.main.temp}°C</p>
+                    <p className="text-5xl font-extrabold text-red-500 dark:text-gray-600">{weatherData.main.temp}°C</p>
                 </div>
 
                 {/* Icona e descrizione */}

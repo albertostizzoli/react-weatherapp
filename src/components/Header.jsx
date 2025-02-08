@@ -103,7 +103,7 @@ const Header = () => {
     return (
         <header className="w-full bg-red-500  dark:bg-gray-800 p-3 flex items-center justify-between shadow-md relative">
             {/* Componente SearchBar per cercare le città */}
-            <SearchBar className="w-full rounded-md p-3 text-gray-800 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 bg-white dark:bg-gray-700" />
+            <SearchBar className="w-full rounded-md p-2 text-gray-800 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 bg-white dark:bg-gray-700" />
             <div className="flex items-center">
                 {/* Pulsante per attivare/disattivare la Dark Mode */}
                 <button
@@ -125,7 +125,7 @@ const Header = () => {
                     initial={{ x: "100%" }}  // Posizione iniziale della Sidebar fuori dallo schermo, a destra
                     animate={{ x: 0 }}  // Posizione a sinistra della Sidebar una volta animata
                     exit={{ x: "100%" }}  // Posizione di uscita della Sidebar, torna a destra e scompare fuori dallo schermo
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}   // Configurazione della transizione di animazione con tipo, rigidità e smorzamento della molla
+                    transition={{ type: "spring", stiffness: 140, damping: 30 }}   // Configurazione della transizione di animazione con tipo, rigidità e smorzamento della molla
                     className="fixed right-0 top-0 h-full w-[390px] bg-red-500  dark:bg-gray-800 shadow-lg p-4 flex flex-col space-y-4 z-50"
                 >
                     {/* Bottone per chiudere la Sidebar */}
@@ -140,19 +140,23 @@ const Header = () => {
                     {/* Sezione con pulsanti per salvare una città e ottenere la geolocalizzazione */}
                     <div className="flex justify-evenly items-center mt-4 pt-6">
                         {/* Bottone per salvare la città attuale */}
-                        <button onClick={handleSaveCity} className="hover:text-yellow-300 dark:hover:text-gray-300 flex flex-col items-center text-white dark:text-gray-100 text-3xl font-bold">
-                            <i className="fa-solid fa-plus"></i>
-                            <span className="text-sm mt-2">Salva</span>
-                        </button>
+                        <div className="flex flex-col items-center hover:text-yellow-300 dark:hover:text-gray-300 text-white dark:text-gray-100 text-3xl font-bold">
+                            <button onClick={handleSaveCity}>
+                                <i className="fa-solid fa-plus hover:scale-[1.9] transition-all"></i>
+                            </button>
+                            <span className="text-sm mt-3">Salva</span>
+                        </div>
 
                         {/* Bottone per ottenere la posizione dell'utente */}
-                        <button onClick={(event) => {
-                            event.preventDefault();
-                            getUserLocation();
-                        }} className="hover:text-yellow-300 dark:hover:text-gray-300 flex flex-col items-center text-white dark:text-gray-100 text-3xl font-bold">
-                            <i className="fas fa-map-marker-alt"></i>
-                            <span className="text-sm mt-2">Posizione</span>
-                        </button>
+                        <div className="hover:text-yellow-300 dark:hover:text-gray-300 flex flex-col items-center text-white dark:text-gray-100 text-3xl font-bold">
+                            <button onClick={(event) => {
+                                event.preventDefault();
+                                getUserLocation();
+                            }}>
+                                <i className="fas fa-map-marker-alt hover:scale-[1.7] transition-all"></i>
+                            </button>
+                            <span className="text-sm mt-3">Posizione</span>
+                        </div>
                     </div>
 
                     {/* Lista delle città salvate */}
@@ -160,13 +164,17 @@ const Header = () => {
                         <h2 className="text-lg font-semibold">Città salvate</h2>
                         <ul className="mt-2 space-y-1 hover:cursor-pointer">
                             {savedCities.map((savedCity, index) => (
-                                <li key={index} className="p-2 hover:border text-white dark:text-gray-200 bg-yellow-500 hover:bg-red-500 dark:bg-gray-600 dark:hover:bg-gray-500 rounded flex justify-between items-center">
-                                    {/* Bottone per selezionare una città salvata */}
-                                    <button onClick={() => handleSelectCity(savedCity)}>
-                                        {savedCity}
-                                    </button>
+                                <li key={index} className="p-2 text-white dark:text-gray-200 bg-yellow-500 hover:bg-red-500 dark:bg-gray-600 dark:hover:bg-gray-500 rounded flex justify-between items-center transition-all"
+                                    onClick={() => handleSelectCity(savedCity)}>
+                                    {/* Nome della città */}
+                                    <span>{savedCity}</span>
                                     {/* Bottone per rimuovere una città salvata */}
-                                    <button onClick={() => handleRemoveCity(savedCity)} className="hover:text-yellow-400 dark:hover:text-gray-700">
+                                    <button
+                                        onClick={(e) => {
+                                            e.stopPropagation(); // Impedisce la propagazione del click al <li>
+                                            handleRemoveCity(savedCity);
+                                        }}
+                                        className="hover:text-yellow-400 dark:hover:text-gray-700">
                                         <i className="fa-solid fa-trash" aria-label={`Rimuovi ${savedCity}`}></i>
                                     </button>
                                 </li>
